@@ -6,7 +6,7 @@ export default function App() {
   const [isEnrl, setEnrl] = useState(true);
 
   useEffect(() => {
-
+    console.log('Test');
     window.addEventListener('message', function (e) {
       const data = e.data;
       console.log('data', data);
