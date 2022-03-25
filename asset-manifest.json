@@ -1,16 +1,19 @@
 {
   "files": {
     "main.css": "/dst.github.io/static/css/main.2418058f.css",
-    "main.js": "/dst.github.io/static/js/main.a463e26d.js",
+    "main.js": "/dst.github.io/static/js/main.7144a8af.js",
     "static/js/377.97f97c8a.chunk.js": "/dst.github.io/static/js/377.97f97c8a.chunk.js",
+    "static/media/GoH-Transparent.png": "/dst.github.io/static/media/GoH-Transparent.bdab2e8877f05cea8745.png",
+    "static/media/saksham-haryana-logo.png": "/dst.github.io/static/media/saksham-haryana-logo.ba8154943d3ad637493b.png",
     "service-worker.js": "/dst.github.io/service-worker.js",
+    "static/media/SDIT-Haryana.png": "/dst.github.io/static/media/SDIT-Haryana.cfb66fbf9c45d15d3849.png",
     "index.html": "/dst.github.io/index.html",
     "main.2418058f.css.map": "/dst.github.io/static/css/main.2418058f.css.map",
-    "main.a463e26d.js.map": "/dst.github.io/static/js/main.a463e26d.js.map",
+    "main.7144a8af.js.map": "/dst.github.io/static/js/main.7144a8af.js.map",
     "377.97f97c8a.chunk.js.map": "/dst.github.io/static/js/377.97f97c8a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2418058f.css",
-    "static/js/main.a463e26d.js"
+    "static/js/main.7144a8af.js"
   ]
 }
