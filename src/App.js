@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
+import sakshamHaryanaLogo from './images/saksham-haryana-logo.png';
+import GoH from './images/GoH-Transparent.png';
+import haryanaLogo from './images/SDIT-Haryana.png';
 
 export default function App() {
   const [trainee, setTrainee] = useState({});
@@ -30,13 +33,13 @@ export default function App() {
       <header>
         <div className="row logo">
           <div className="shaksham-logo">
-            <img className="haiyana-small-logo" src='../GoH-Transparent.png' alt="logo"/>
+            <img className="haiyana-small-logo" src={GoH} alt="logo"/>
           </div>
           <div>
-            <img className="iti-small-logo" src='../SDIT-Haryana.png' alt="logo"/>
+            <img className="iti-small-logo" src={haryanaLogo} alt="logo"/>
           </div>
           <div className="hariyana-logo">
-            <img className="shaksham-small-logo" src='../saksham-haryana-logo.png' alt="logo"/>
+            <img className="shaksham-small-logo" src={sakshamHaryanaLogo} alt="logo"/>
           </div>
         </div>
         <div className="header-text">
