@@ -29,6 +29,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": "https://samagra-development.github.io/dst.github.io/",
   "eslintConfig": {
     "extends": [
       "react-app",
