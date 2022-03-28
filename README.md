@@ -26,7 +26,7 @@ Once you have npm installed you can run the following both to install and upgrad
 -> To install packages to below:
 ### `yarn install`
 
-###Create .env file
+### Create .env file
  - Create ```.env``` file 
    
  - Copy  ```.env.sample``` and paste into ```.env``` 
@@ -36,7 +36,7 @@ Once you have npm installed you can run the following both to install and upgrad
 -> After all installation done you can run
 ### `yarn start`
 
-###Check app working as PWA
+### Check app working as PWA in local
 
 - Generate build using below:
   
