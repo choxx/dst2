@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.2418058f.css",
-    "main.js": "/static/js/main.23184539.js",
+    "main.js": "/static/js/main.e7cde3a5.js",
     "static/js/377.97f97c8a.chunk.js": "/static/js/377.97f97c8a.chunk.js",
     "static/media/GoH-Transparent.png": "/static/media/GoH-Transparent.bdab2e8877f05cea8745.png",
     "static/media/saksham-haryana-logo.png": "/static/media/saksham-haryana-logo.ba8154943d3ad637493b.png",
@@ -9,11 +9,11 @@
     "static/media/SDIT-Haryana.png": "/static/media/SDIT-Haryana.cfb66fbf9c45d15d3849.png",
     "index.html": "/index.html",
     "main.2418058f.css.map": "/static/css/main.2418058f.css.map",
-    "main.23184539.js.map": "/static/js/main.23184539.js.map",
+    "main.e7cde3a5.js.map": "/static/js/main.e7cde3a5.js.map",
     "377.97f97c8a.chunk.js.map": "/static/js/377.97f97c8a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2418058f.css",
-    "static/js/main.23184539.js"
+    "static/js/main.e7cde3a5.js"
   ]
 }
