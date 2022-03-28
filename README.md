@@ -1,61 +1,27 @@
 <p align="center">
   <h1>DST - PWA</h1>
 </p>
-In the project directory, you can run:
 
-### Node installation
+### 1. Requirements :scroll:
+1. Your machine should have Node and React installed
 
-You can download node packages from the official site https://nodejs.org/en/download/
+*Note: Prefer Node version (14.x) and react version (17.0.2)*
 
-Please select the download package as per your OS requirement
+### 2. Installation Steps :walking:
+```sh
+yarn install
+```
 
-```Preferred version is v14.x```
+### 3. Create .env file
+- Create ```.env``` file
 
-### React version
-Version: v17.0.2
+- Copy  ```.env.sample``` and paste into ```.env```
 
-### Yarn installation
--> Install via npm
+- Modify data value as needed
 
-It is recommended to install Yarn through the npm package manager, which comes bundled with Node.js when you install it on your system.
+### 4. Run it :checkered_flag:
+```sh
+yarn start
+```
 
-Once you have npm installed you can run the following both to install and upgrade Yarn:
-
-### `npm install --global yarn` || `npm install yarn`
-
--> To install packages to below:
-### `yarn install`
-
-### Create .env file
- - Create ```.env``` file 
-   
- - Copy  ```.env.sample``` and paste into ```.env``` 
-
- - Modify data value as needed
-
--> After all installation done you can run
-### `yarn start`
-
-### Check app working as PWA in local
-
-- Generate build using below:
-  
-   ```yarn build```
-
-- Go to `build` folder
-
-- Run ```http-server -p 5000 -C1```
-
-
-   ``Note:  you can change port your choice instead of 5000``
-
-- Available option to run project:
-
- ![img.png](img.png)
-
-- There is an option to add the home screen to mobile and web
-
- ![1648464683014.jpg](pwa-option.jpg)
-
- ![MobileApp.jpg](mobile-app.jpg)
-
+You can view your React app on http://localhost:3000/
