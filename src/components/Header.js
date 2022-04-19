@@ -4,6 +4,8 @@ import haryanaLogo from '../images/SDIT-Haryana.png';
 export default function Header() {
   return (
     <>
+      <div className="bg-teal-700 text-3xl text-white text-center p-4">
+      </div>
       <div className="relative bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div
