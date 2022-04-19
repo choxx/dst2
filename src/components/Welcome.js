@@ -1,8 +1,11 @@
 import React from 'react';
 import {UserIcon} from '@heroicons/react/solid'
-import {browserHistory} from "react-router";
-
-export default function Welcome() {
+import {onGoBack} from "../common/globals";
+import withGoBack from '../common/withGoBack';
+const Welcome = ({goBack}) => {
+  const onBack = () => {
+    onGoBack(goBack);
+  }
   return (
     <div>
       <div className="flex items-center justify-center text-teal-700">
@@ -28,7 +31,7 @@ export default function Welcome() {
       <div className="p-10 flex item-center justify-center">
         <div className="w-1/2 flex justify-center">
           <button
-            onClick={() => browserHistory.push('/verify-otp')}
+            onClick={onBack}
             type="button"
             className="bg-teal-700 text-white p-2 text-sm w-auto">
             Go Back
@@ -44,3 +47,4 @@ export default function Welcome() {
     </div>
   )
 }
+export default withGoBack(Welcome);

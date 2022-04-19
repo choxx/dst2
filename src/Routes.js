@@ -10,6 +10,7 @@ import TraineeLogin from './pages/TraineeLogin';
 import PrincipalLogin from "./components/Principle/PrincipalLogin";
 import Otp from "./components/Otp";
 import Welcome from "./components/Welcome";
+import TrainerLogin from './components/Trainer/TrainerLogin';
 
 class Routes extends React.Component {
   render() {
@@ -23,6 +24,7 @@ class Routes extends React.Component {
               <Route exact path="/trainee-login" components={{ component: TraineeLogin }} />
               <Route exact path="/verify-otp" components={{ component: Otp }} />
               <Route exact path="/welcome" components={{ component: Welcome }} />
+              <Route exact path="/trainer-login" components={{ component: TrainerLogin }} />
               <Route path="*" components={{ component: NotFound }} />
             </Route>
           </Router>

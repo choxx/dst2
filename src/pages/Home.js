@@ -1,6 +1,27 @@
 import {UserIcon} from '@heroicons/react/solid'
-import { browserHistory } from 'react-router';
-export default function Home() {
+import {browserHistory} from 'react-router';
+import withGoBack from '../common/withGoBack.js';
+
+const Home = ({ goBack,setGoBack }) => {
+  const onGoBack = () => {
+    goBack.push(window.location.pathname);
+    setGoBack(goBack);
+  };
+
+  const onPrincipalLogin = () => {
+    onGoBack();
+    browserHistory.push('/principal-login');
+  }
+
+  const onTrainerLogin = () => {
+    onGoBack();
+    browserHistory.push('/trainer-login');
+  }
+
+  const onTraineeLogin = () => {
+    onGoBack();
+    browserHistory.push('/trainee-login');
+  }
 
   return (
     <>
@@ -10,7 +31,7 @@ export default function Home() {
       <div className="mt-10 text-center flex flex-col space-y-4">
         <div>
           <button
-            onClick={() => browserHistory.push('/principal-login')}
+            onClick={onPrincipalLogin}
             type="button"
             className="inline-flex items-center px-4 py-2 border border-teal-700 shadow-sm text-base font-medium rounded-md text-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           >
@@ -20,6 +41,7 @@ export default function Home() {
         </div>
         <div>
           <button
+            onClick={onTrainerLogin}
             type="button"
             className="inline-flex items-center px-4 py-2 border border-teal-700 shadow-sm text-base font-medium rounded-md text-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           >
@@ -29,7 +51,7 @@ export default function Home() {
         </div>
         <div>
           <button
-            onClick={() => browserHistory.push('/trainee-login')}
+            onClick={onTraineeLogin}
             type="button"
             className="inline-flex items-center px-4 py-2 border border-teal-700 shadow-sm text-base font-medium rounded-md text-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           >
@@ -41,3 +63,4 @@ export default function Home() {
     </>
   )
 }
+export default withGoBack(Home);
