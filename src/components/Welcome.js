@@ -2,6 +2,7 @@ import React from 'react';
 import {UserIcon} from '@heroicons/react/solid'
 import {onGoBack} from "../common/globals";
 import withGoBack from '../common/withGoBack';
+
 const Welcome = ({goBack}) => {
   const onBack = () => {
     onGoBack(goBack);
@@ -9,7 +10,7 @@ const Welcome = ({goBack}) => {
   return (
     <div>
       <div className="flex items-center justify-center text-teal-700">
-        <UserIcon className="w-1/2" aria-hidden="true"/>
+        <UserIcon className="w-5/12 sm:w-1/3 md:w-1/3 lg:w-1/4 xl:w-1/6" aria-hidden="true"/>
       </div>
       <div className="flex mb-10 items-center justify-center text-teal-700">
         <span className="font-semibold">Welcome Bhagat Singh</span>
