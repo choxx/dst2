@@ -1,10 +1,21 @@
 import GoH from '../images/GoH-Transparent.png';
 import haryanaLogo from '../images/SDIT-Haryana.png';
+import {ArrowLeftIcon} from '@heroicons/react/solid'
 
-export default function Header() {
+const Header = ({title = '', onBackButton = ''}) => {
   return (
     <>
-      <div className="bg-teal-700 text-3xl text-white text-center p-4">
+      <div className="flex flex-row h-10 w-full bg-teal-700 text-white text-center justify-center">
+        <div className="w-1/6 self-center pl-2" onClick={onBackButton === '' ? () => {} : onBackButton}>
+          {
+            onBackButton && <ArrowLeftIcon className="w-7 h-7" aria-hidden="true"/>
+          }
+        </div>
+        <div className="w-10/12 pr-12 self-center">
+          {
+            title !== '' && <span className="text-2xl" aria-hidden="true">{title}</span>
+          }
+        </div>
       </div>
       <div className="relative bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -25,3 +36,4 @@ export default function Header() {
     </>
   )
 }
+export default Header;

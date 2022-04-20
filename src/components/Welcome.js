@@ -2,6 +2,7 @@ import React from 'react';
 import {UserIcon} from '@heroicons/react/solid'
 import {onGoBack} from "../common/globals";
 import withGoBack from '../common/withGoBack';
+import Header from "./Header";
 
 const Welcome = ({goBack}) => {
   const onBack = () => {
@@ -9,6 +10,7 @@ const Welcome = ({goBack}) => {
   }
   return (
     <div>
+      <Header/>
       <div className="flex items-center justify-center text-teal-700">
         <UserIcon className="w-5/12 sm:w-1/3 md:w-1/3 lg:w-1/4 xl:w-1/6" aria-hidden="true"/>
       </div>

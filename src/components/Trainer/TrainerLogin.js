@@ -1,7 +1,8 @@
 import React from 'react';
-import {browserHistory} from "react-router";
-import {onGoBack} from "../../common/globals";
+import {browserHistory} from 'react-router';
+import {onGoBack} from '../../common/globals';
 import withGoBack from '../../common/withGoBack';
+import Header from '../Header';
 
 const TrainerLogin = ({goBack, setGoBack}) => {
   const onSendOTP = () => {
@@ -14,6 +15,7 @@ const TrainerLogin = ({goBack, setGoBack}) => {
   }
   return (
     <div>
+      <Header/>
       <div className="m-10 text-teal-800 text-center">
         <h2 className="header-text-color">Trainer Log in</h2>
       </div>

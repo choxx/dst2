@@ -2,6 +2,7 @@ import React from 'react';
 import {browserHistory} from "react-router";
 import withGoBack from '../../common/withGoBack';
 import {onGoBack} from '../../common/globals';
+import Header from "../Header";
 
 const PrincipalLogin = ({goBack, setGoBack}) => {
   const onSendOTP = () => {
@@ -15,6 +16,7 @@ const PrincipalLogin = ({goBack, setGoBack}) => {
 
   return (
     <div>
+      <Header/>
       <div className="m-10 text-teal-800 text-center">
         <h2 className="header-text-color">Principal Log in</h2>
       </div>

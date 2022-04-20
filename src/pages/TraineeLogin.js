@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import Header from "../components/Header";
 
 export default function TraineeLogin() {
   const [trainee, setTrainee] = useState({});
@@ -26,6 +27,7 @@ export default function TraineeLogin() {
 
   return (
    <>
+     <Header/>
      <div className="m-10 text-teal-800 text-center">
        <h2 className="header-text-color">DST Trainee Attendance</h2>
      </div>

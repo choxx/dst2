@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import OTPInput, {ResendOTP} from "otp-input-react";
-import {browserHistory} from "react-router";
-import {onGoBack} from "../common/globals";
+import {browserHistory} from 'react-router';
+import {onGoBack} from '../common/globals';
 import withGoBack from '../common/withGoBack';
+import Header from './Header';
 
 const Otp = ({goBack, setGoBack}) => {
   const [OTP, setOTP] = useState("");
@@ -30,6 +31,7 @@ const Otp = ({goBack, setGoBack}) => {
 
   return (
     <div>
+      <Header/>
       <div className="m-10 text-teal-800 text-center">
         <h2 className="header-text-color">Please enter OTP sent to +91-**********</h2>
       </div>

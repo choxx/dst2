@@ -1,6 +1,7 @@
 import {UserIcon} from '@heroicons/react/solid'
 import {browserHistory} from 'react-router';
 import withGoBack from '../common/withGoBack.js';
+import Header from '../components/Header';
 
 const Home = ({ goBack,setGoBack }) => {
   const onGoBack = () => {
@@ -25,6 +26,7 @@ const Home = ({ goBack,setGoBack }) => {
 
   return (
     <>
+      <Header/>
       <div className="mt-10 text-center text-teal-700">
         Select your user profile to log in
       </div>
