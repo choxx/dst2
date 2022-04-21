@@ -16,7 +16,7 @@ const TrainerLogin = ({goBack, setGoBack}) => {
   return (
     <div>
       <Header/>
-      <div className="m-10 text-teal-800 text-center">
+      <div className="m-10 text-2xl font-bold text-teal-800 text-center">
         <h2 className="header-text-color">Trainer Log in</h2>
       </div>
       <div className="flex justify-center items-center">
