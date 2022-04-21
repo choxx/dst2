@@ -1,21 +1,22 @@
 import React from 'react';
-import {browserHistory} from 'react-router';
-import {onGoBack} from '../../common/globals';
+import { browserHistory } from 'react-router';
+import { onGoBack } from '../../common/globals';
 import withGoBack from '../../common/withGoBack';
 import Header from '../Header';
 
-const TrainerLogin = ({goBack, setGoBack}) => {
+const TrainerLogin = ({ goBack, setGoBack }) => {
   const onSendOTP = () => {
     goBack.push(window.location.pathname);
     setGoBack(goBack);
     browserHistory.push('/verify-otp');
-  }
+  };
   const onBack = () => {
     onGoBack(goBack);
-  }
+  };
+
   return (
     <div>
-      <Header/>
+      <Header />
       <div className="m-10 text-2xl font-bold text-teal-800 text-center">
         <h2 className="header-text-color">Trainer Log in</h2>
       </div>
@@ -27,7 +28,9 @@ const TrainerLogin = ({goBack, setGoBack}) => {
             </label>
             <input
               className="shadow appearance-none border border-teal-600 rounded w-full py-2 px-3 text-teal-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="hrms" type="text"/>
+              id="hrms"
+              type="text"
+            />
           </div>
           <div className="mb-4">
             <label className="block text-teal-700 text-sm font-bold mb-2" htmlFor="username">
@@ -35,13 +38,16 @@ const TrainerLogin = ({goBack, setGoBack}) => {
             </label>
             <input
               className="shadow appearance-none border border-teal-600 rounded w-full py-2 px-3 text-teal-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="mobile" type="number"/>
+              id="mobile"
+              type="number"
+            />
           </div>
           <div className="flex items-center justify-center">
             <button
               onClick={onSendOTP}
               className="bg-teal-700 hover:bg-teal-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
-              type="button">
+              type="button"
+            >
               Send OTP
             </button>
           </div>
@@ -51,11 +57,12 @@ const TrainerLogin = ({goBack, setGoBack}) => {
         <button
           onClick={onBack}
           className="bg-teal-700 hover:bg-teal-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
-          type="button">
+          type="button"
+        >
           Go Back
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 export default withGoBack(TrainerLogin);

@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Routes from './Routes';
-import './App.css'
+import './App.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-    <Routes />,
-  document.getElementById('root')
+  <Routes />,
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change

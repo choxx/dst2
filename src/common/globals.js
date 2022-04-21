@@ -1,6 +1,6 @@
 import { browserHistory } from 'react-router';
 import {
-  goBackSet
+  goBackSet,
 } from '../redux/actions';
 
 export const onGoBack = (goBack) => {

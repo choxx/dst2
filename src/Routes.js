@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { Provider } from 'react-redux';
 import { browserHistory, Route, Router } from 'react-router';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -9,12 +9,12 @@ import Home from './pages/Home';
 import TraineeLogin from './pages/TraineeLogin';
 import PrincipalLogin from './components/Principle/PrincipalLogin';
 import Otp from './components/Otp';
-import Welcome from "./components/Welcome";
+import Welcome from './components/Welcome';
 import TrainerLogin from './components/Trainer/TrainerLogin';
 import DstMc from './components/DstMc/DstMc';
-import CreateDstMc from './components/DstMc/CreateDstMc'
+import CreateDstMc from './components/DstMc/CreateDstMc';
 
-class Routes extends React.Component {
+class Routes extends PureComponent {
   render() {
     return (
       <Provider store={store}>

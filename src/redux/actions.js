@@ -7,5 +7,5 @@ export const resetRedux = () => ({
 
 export const goBackSet = (data) => ({
   type: GO_BACK_SET,
-  data
+  data,
 });

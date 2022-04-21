@@ -1,4 +1,4 @@
-import {GO_BACK_SET, RESET_REDUX} from './actions';
+import { GO_BACK_SET, RESET_REDUX } from './actions';
 
 export const goBack = (state = [], action) => {
   switch (action.type) {

@@ -1,18 +1,18 @@
 import React from 'react';
-import {UserIcon} from '@heroicons/react/solid'
-import {onGoBack} from "../common/globals";
+import { UserIcon } from '@heroicons/react/solid';
+import { onGoBack } from '../common/globals';
 import withGoBack from '../common/withGoBack';
-import Header from "./Header";
+import Header from './Header';
 
-const Welcome = ({goBack}) => {
+const Welcome = ({ goBack }) => {
   const onBack = () => {
     onGoBack(goBack);
-  }
+  };
   return (
     <div>
-      <Header/>
+      <Header />
       <div className="flex items-center justify-center text-teal-700">
-        <UserIcon className="w-5/12 sm:w-1/3 md:w-1/3 lg:w-1/4 xl:w-1/6" aria-hidden="true"/>
+        <UserIcon className="w-5/12 sm:w-1/3 md:w-1/3 lg:w-1/4 xl:w-1/6" aria-hidden="true" />
       </div>
       <div className="flex mb-10 items-center justify-center text-2xl font-bold text-teal-700">
         <span className="font-semibold">Welcome Bhagat Singh</span>
@@ -36,7 +36,8 @@ const Welcome = ({goBack}) => {
           <button
             onClick={onBack}
             type="button"
-            className="bg-teal-700 text-white p-2 text-sm w-auto">
+            className="bg-teal-700 text-white p-2 text-sm w-auto"
+          >
             Go Back
           </button>
           <button type="button" className="bg-teal-700 text-white p-2 ml-6 text-lg w-auto">
@@ -48,6 +49,6 @@ const Welcome = ({goBack}) => {
         <span className="text-teal-700">Incase details are incorrect, contact SDIT department</span>
       </div>
     </div>
-  )
-}
+  );
+};
 export default withGoBack(Welcome);

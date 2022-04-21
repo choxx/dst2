@@ -3,15 +3,14 @@ import { reducer as reduxFormReducer } from 'redux-form';
 import { persistStore, persistReducer } from 'redux-persist';
 import reduxStorage from 'redux-persist/lib/storage';
 import {
-  goBack
+  goBack,
 } from './reducers';
-
 
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
   whitelist: [
-    'goBack'
+    'goBack',
   ],
 };
 
@@ -20,7 +19,7 @@ const persistedReducer = persistReducer(
   combineReducers({
     goBack,
     form: reduxFormReducer,
-  })
+  }),
 );
 
 export const store = createStore(persistedReducer);
