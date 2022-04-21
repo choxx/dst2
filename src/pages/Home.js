@@ -27,10 +27,10 @@ const Home = ({ goBack,setGoBack }) => {
   return (
     <>
       <Header/>
-      <div className="mt-10 text-center text-teal-700">
+      <div className="mt-10 font-bold text-2xl text-center text-teal-700">
         Select your user profile to log in
       </div>
-      <div className="mt-10 text-center flex flex-col space-y-4">
+      <div className="mt-20 flex flex-col space-y-8 items-center justify-center">
         <div>
           <button
             onClick={onPrincipalLogin}

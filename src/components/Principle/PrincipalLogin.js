@@ -17,7 +17,7 @@ const PrincipalLogin = ({goBack, setGoBack}) => {
   return (
     <div>
       <Header/>
-      <div className="m-10 text-teal-800 text-center">
+      <div className="m-10 font-bold text-2xl text-teal-800 text-center">
         <h2 className="header-text-color">Principal Log in</h2>
       </div>
       <div className="flex justify-center items-center">

@@ -14,7 +14,7 @@ const Welcome = ({goBack}) => {
       <div className="flex items-center justify-center text-teal-700">
         <UserIcon className="w-5/12 sm:w-1/3 md:w-1/3 lg:w-1/4 xl:w-1/6" aria-hidden="true"/>
       </div>
-      <div className="flex mb-10 items-center justify-center text-teal-700">
+      <div className="flex mb-10 items-center justify-center text-2xl font-bold text-teal-700">
         <span className="font-semibold">Welcome Bhagat Singh</span>
       </div>
       <div className="flex flex-col space-y-8 items-center justify-center">

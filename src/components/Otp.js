@@ -32,7 +32,7 @@ const Otp = ({goBack, setGoBack}) => {
   return (
     <div>
       <Header/>
-      <div className="m-10 text-teal-800 text-center">
+      <div className="m-10 font-bold text-xl text-teal-800 text-center">
         <h2 className="header-text-color">Please enter OTP sent to +91-**********</h2>
       </div>
       <div className="flex flex-col space-y-16">
