@@ -1,12 +1,18 @@
 import React from 'react';
 import { UserIcon } from '@heroicons/react/solid';
+import { browserHistory } from 'react-router';
 import { onGoBack } from '../common/globals';
 import withGoBack from '../common/withGoBack';
 import Header from './Header';
 
-const Welcome = ({ goBack }) => {
+const Welcome = ({ goBack, setGoBack }) => {
   const onBack = () => {
     onGoBack(goBack);
+  };
+  const onNext = () => {
+    goBack.push(window.location.pathname);
+    setGoBack(goBack);
+    browserHistory.push('/dst-mc');
   };
   return (
     <div>
@@ -32,7 +38,7 @@ const Welcome = ({ goBack }) => {
         </div>
       </div>
       <div className="p-10 flex item-center justify-center">
-        <div className="w-1/2 flex justify-center">
+        <div className="flex justify-center">
           <button
             onClick={onBack}
             type="button"
@@ -40,7 +46,11 @@ const Welcome = ({ goBack }) => {
           >
             Go Back
           </button>
-          <button type="button" className="bg-teal-700 text-white p-2 ml-6 text-lg w-auto">
+          <button
+            onClick={onNext}
+            type="button"
+            className="bg-teal-700 text-white p-2 ml-6 text-lg w-auto"
+          >
             Next
           </button>
         </div>

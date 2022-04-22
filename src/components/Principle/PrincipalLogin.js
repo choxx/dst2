@@ -32,25 +32,25 @@ const PrincipalLogin = ({ goBack, setGoBack }) => {
               type="text"
             />
           </div>
-          <div className="flex items-center justify-center">
-            <button
-              onClick={onSendOTP}
-              className="bg-teal-700 hover:bg-teal-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
-              type="button"
-            >
-              Submit
-            </button>
+          <div className="p-10 flex item-center justify-center w-9/12">
+            <div className="flex justify-center">
+              <button
+                onClick={onBack}
+                type="button"
+                className="bg-teal-700 text-white p-2 text-sm w-auto"
+              >
+                Go Back
+              </button>
+              <button
+                onClick={onSendOTP}
+                type="button"
+                className="bg-teal-700 text-white p-2 ml-6 text-lg w-auto"
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </form>
-      </div>
-      <div className="flex items-center justify-center">
-        <button
-          onClick={onBack}
-          className="bg-teal-700 hover:bg-teal-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
-          type="button"
-        >
-          Go Back
-        </button>
       </div>
     </div>
   );
