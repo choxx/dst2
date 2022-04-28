@@ -2,7 +2,7 @@ import React from 'react';
 import { UserIcon } from '@heroicons/react/solid';
 import { browserHistory } from 'react-router';
 import { onGoBack } from '../common/globals';
-import withGoBack from '../common/withGoBack';
+import withGoBack from '../redux/HOC/withGoBack';
 import Header from './Header';
 
 const Welcome = ({ goBack, setGoBack }) => {

@@ -4,6 +4,8 @@ import Routes from './Routes';
 import './App.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import 'react-toastify/dist/ReactToastify.css';
+import 'react-activity/dist/library.css';
 
 ReactDOM.render(
   <Routes />,

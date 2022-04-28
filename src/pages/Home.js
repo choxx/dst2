@@ -1,6 +1,6 @@
 import { UserIcon } from '@heroicons/react/solid';
 import { browserHistory } from 'react-router';
-import withGoBack from '../common/withGoBack';
+import withGoBack from '../redux/HOC/withGoBack';
 import Header from '../components/Header';
 
 const Home = ({ goBack, setGoBack }) => {

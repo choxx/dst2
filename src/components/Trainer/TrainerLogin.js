@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import { onGoBack } from '../../common/globals';
-import withGoBack from '../../common/withGoBack';
+import withGoBack from '../../redux/HOC/withGoBack';
 import Header from '../Header';
 
 const TrainerLogin = ({ goBack, setGoBack }) => {

@@ -1,5 +1,5 @@
 import { onGoBack } from '../../common/globals';
-import withGoBack from '../../common/withGoBack';
+import withGoBack from '../../redux/HOC/withGoBack';
 import Header from '../Header';
 
 const CreateDstMc = ({ goBack }) => {

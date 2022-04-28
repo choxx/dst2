@@ -1,0 +1,25 @@
+[
+  {
+    "formId": "enrollment",
+    "triggers": [
+      {
+        "desc": "Checks if the user consent is given",
+        "name": "CheckIfConsentPresent",
+        "checks": {
+          "_and": [
+            {
+              "keyName": "consent",
+              "value": "yes",
+              "operator": "_eq"
+            },
+            {
+              "keyName": "consent",
+              "value": "yes",
+              "operator": "_eq"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

@@ -10,3 +10,15 @@ export const onGoBack = (goBack) => {
     goBackSet(goBack);
   }
 };
+// CONVERT OBJECT TO QUERY STRING
+export const queryString = (obj) => {
+  const str = [];
+  // eslint-disable-next-line no-restricted-syntax
+  for (const p in obj) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (obj.hasOwnProperty(p)) {
+      str.push(`${encodeURIComponent(p)}=${encodeURIComponent(obj[p])}`);
+    }
+  }
+  return str.join('&');
+};

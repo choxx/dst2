@@ -13,12 +13,15 @@ import Welcome from './components/Welcome';
 import TrainerLogin from './components/Trainer/TrainerLogin';
 import DstMc from './components/DstMc/DstMc';
 import CreateDstMc from './components/DstMc/CreateDstMc';
+import TrainerOptions from './components/Trainer/TrainerOptions';
+import Global from './components/Global';
 
 class Routes extends PureComponent {
   render() {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+          <Global />
           <Router history={browserHistory}>
             <Route component={App}>
               <Route exact path="/" components={{ component: Home }} />
@@ -29,6 +32,7 @@ class Routes extends PureComponent {
               <Route exact path="/trainer-login" components={{ component: TrainerLogin }} />
               <Route exact path="/dst-mc" components={{ component: DstMc }} />
               <Route exact path="/create-dst-mc" components={{ component: CreateDstMc }} />
+              <Route exact path="/trainer-options" components={{ component: TrainerOptions }} />
               <Route path="*" components={{ component: NotFound }} />
             </Route>
           </Router>

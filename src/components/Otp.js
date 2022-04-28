@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 import OTPInput, { ResendOTP } from 'otp-input-react';
 import { browserHistory } from 'react-router';
 import { onGoBack } from '../common/globals';
-import withGoBack from '../common/withGoBack';
+import withGoBack from '../redux/HOC/withGoBack';
+import withUser from '../redux/HOC/withUser';
+import withNotify from '../redux/HOC/withNotify';
+import withLoader from '../redux/HOC/withLoader';
 import Header from './Header';
+import { verifyOTP } from '../utils/utils';
 
-const Otp = ({ goBack, setGoBack }) => {
+const Otp = ({
+  goBack, setGoBack, user, setNotify, setLoader,
+}) => {
   const [OTP, setOTP] = useState('');
   const renderButton = (buttonProps) => (
     <div className="items-center justify-center">
@@ -19,11 +25,23 @@ const Otp = ({ goBack, setGoBack }) => {
     </div>
   );
   const renderTime = () => React.Fragment;
-  const onValidate = () => {
-    setOTP('');
-    goBack.push(window.location.pathname);
-    setGoBack(goBack);
-    browserHistory.push('/welcome');
+  const onValidate = async () => {
+    const verifyOtpData = {
+      phone: user.phone,
+      otp: OTP,
+    };
+    const verifyOTPData = await verifyOTP(verifyOtpData);
+    const { status, providerSuccessResponse } = verifyOTPData;
+    if (status) {
+      setNotify({ message: providerSuccessResponse, type: 'success' });
+      setOTP('');
+      goBack.push(window.location.pathname);
+      setGoBack(goBack);
+      browserHistory.push('/welcome');
+    } else {
+      setNotify({ message: 'Incorrect OTP', type: 'success' });
+    }
+    setLoader(false);
   };
   const onBack = () => {
     onGoBack(goBack);
@@ -81,4 +99,4 @@ const Otp = ({ goBack, setGoBack }) => {
     </div>
   );
 };
-export default withGoBack(Otp);
+export default withNotify(withLoader(withUser(withGoBack(Otp))));

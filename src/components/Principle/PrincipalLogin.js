@@ -1,14 +1,35 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import withGoBack from '../../common/withGoBack';
+import { Field, Form } from 'react-final-form';
+import withGoBack from '../../redux/HOC/withGoBack';
+import withLoader from '../../redux/HOC/withLoader';
+import withNotify from '../../redux/HOC/withNotify';
+import withUser from '../../redux/HOC/withUser';
 import { onGoBack } from '../../common/globals';
+import { renderField, required } from '../../helpers/form-validations';
+import { sendOTP } from '../../utils/utils';
 import Header from '../Header';
 
-const PrincipalLogin = ({ goBack, setGoBack }) => {
-  const onSendOTP = () => {
-    goBack.push(window.location.pathname);
-    setGoBack(goBack);
-    browserHistory.push('/verify-otp');
+const PrincipalLogin = ({
+  goBack, setGoBack, setLoader, setNotify, setUser,
+}) => {
+  const onSubmit = async (formData) => {
+    const otpData = {
+      phone: formData.hrms,
+    };
+    setLoader(true);
+    const otpRes = await sendOTP(otpData);
+    const { status, providerSuccessResponse } = otpRes;
+    if (status) {
+      setUser({ ...otpData });
+      setNotify({ message: providerSuccessResponse, type: 'success' });
+      goBack.push(window.location.pathname);
+      setGoBack(goBack);
+      browserHistory.push('/verify-otp');
+    } else {
+      setNotify({ message: 'Fail to send OTP! Please try again.', type: 'success' });
+    }
+    setLoader(false);
   };
   const onBack = () => {
     onGoBack(goBack);
@@ -21,38 +42,44 @@ const PrincipalLogin = ({ goBack, setGoBack }) => {
         <h2 className="header-text-color">Principal Log in</h2>
       </div>
       <div className="flex justify-center items-center">
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <div className="mb-4">
-            <label className="block text-teal-700 text-sm font-bold mb-2" htmlFor="username">
-              Enter your HRMS Code
-            </label>
-            <input
-              className="shadow appearance-none border border-teal-600 rounded w-full py-2 px-3 text-teal-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="hrms"
-              type="text"
-            />
-          </div>
-          <div className="p-10 flex item-center justify-center w-9/12">
-            <div className="flex justify-center">
-              <button
-                onClick={onBack}
-                type="button"
-                className="bg-teal-700 text-white p-2 text-sm w-auto"
-              >
-                Go Back
-              </button>
-              <button
-                onClick={onSendOTP}
-                type="button"
-                className="bg-teal-700 text-white p-2 ml-6 text-lg w-auto"
-              >
-                Submit
-              </button>
-            </div>
-          </div>
-        </form>
+        <Form
+          onSubmit={onSubmit}
+          render={({ handleSubmit }) => (
+            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <div className="mb-4">
+                <label className="block text-teal-700 text-sm font-bold mb-2" htmlFor="username">
+                  Enter your HRMS Code
+                </label>
+                <Field
+                  className="shadow appearance-none border border-teal-600 rounded w-full py-2 px-3 text-teal-700 leading-tight focus:outline-none focus:shadow-outline"
+                  name="hrms"
+                  type="text"
+                  id="hrms"
+                  validate={required}
+                >
+                  {renderField}
+                </Field>
+              </div>
+              <div className="p-10 flex item-center justify-center">
+                <button
+                  onClick={onBack}
+                  type="button"
+                  className="bg-teal-700 text-white p-2 text-lg w-auto"
+                >
+                  Go Back
+                </button>
+                <button
+                  type="submit"
+                  className="bg-teal-700 text-white p-2 ml-6 text-lg w-auto"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          )}
+        />
       </div>
     </div>
   );
 };
-export default withGoBack(PrincipalLogin);
+export default withUser(withNotify(withLoader(withGoBack(PrincipalLogin))));

@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
-import { goBackSet } from '../redux/actions';
+import { loaderSet } from '../actions';
 
 const mapDispatchToProps = (dispatch) => ({
-  setGoBack: (data) => {
-    dispatch(goBackSet(data));
+  setLoader: (data) => {
+    dispatch(loaderSet(data));
   },
 });
 
 const mapStateToProps = (state) => ({
-  goBack: state.goBack ? state.goBack : [],
+  loader: state.loader ? state.loader : false,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps);

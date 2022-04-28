@@ -1,9 +1,8 @@
 import { createStore, combineReducers } from 'redux';
-import { reducer as reduxFormReducer } from 'redux-form';
 import { persistStore, persistReducer } from 'redux-persist';
 import reduxStorage from 'redux-persist/lib/storage';
 import {
-  goBack,
+  goBack, loader, notify, user,
 } from './reducers';
 
 const persistConfig = {
@@ -18,7 +17,9 @@ const persistedReducer = persistReducer(
   persistConfig,
   combineReducers({
     goBack,
-    form: reduxFormReducer,
+    loader,
+    notify,
+    user,
   }),
 );
 

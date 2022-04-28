@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import formSpec from '../form_spec.json';
 
 const TraineeLogin = () => {
   const [trainee, setTrainee] = useState({});
   const [isEnrl, setEnrl] = useState(true);
+
+  const triggers = JSON.stringify(formSpec[0].triggers);
 
   useEffect(() => {
     console.log('Test');
@@ -34,7 +37,7 @@ const TraineeLogin = () => {
         ? (
           <iframe
             frameBorder="0"
-            src={`${process.env.REACT_APP_ENKETO}/preview?xform=${process.env.REACT_APP_GET_FORM}/getForm/enrollment&id=enrollment`}
+            src={`${process.env.REACT_APP_ENKETO}/preview?xform=${process.env.REACT_APP_GET_FORM}/getForm/enrollment&id=enrollment&triggers=${triggers}`}
             title="Enrollment"
             allow="geolocation"
             width="100%"
