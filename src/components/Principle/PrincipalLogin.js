@@ -14,20 +14,21 @@ const PrincipalLogin = ({
   goBack, setGoBack, setLoader, setNotify, setUser,
 }) => {
   const onSubmit = async (formData) => {
+    browserHistory.push('/verify-otp');
     const otpData = {
       phone: formData.hrms,
     };
     setLoader(true);
     const otpRes = await sendOTP(otpData);
-    const { status, providerSuccessResponse } = otpRes;
-    if (status) {
-      setUser({ ...otpData });
-      setNotify({ message: providerSuccessResponse, type: 'success' });
+    const { responseStatus, message, resp } = otpRes;
+    if (responseStatus) {
+      setUser({ ...resp.result.data });
+      setNotify({ message: 'OTP send successfully.', type: 'success' });
       goBack.push(window.location.pathname);
       setGoBack(goBack);
       browserHistory.push('/verify-otp');
     } else {
-      setNotify({ message: 'Fail to send OTP! Please try again.', type: 'success' });
+      setNotify({ message, type: 'error' });
     }
     setLoader(false);
   };

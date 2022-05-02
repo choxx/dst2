@@ -10,7 +10,7 @@ import Header from './Header';
 import { verifyOTP } from '../utils/utils';
 
 const Otp = ({
-  goBack, setGoBack, user, setNotify, setLoader,
+  goBack, setGoBack, user, setNotify, setLoader, setUser,
 }) => {
   const [OTP, setOTP] = useState('');
   const renderButton = (buttonProps) => (
@@ -24,6 +24,7 @@ const Otp = ({
       </button>
     </div>
   );
+
   const renderTime = () => React.Fragment;
   const onValidate = async () => {
     const verifyOtpData = {
@@ -31,15 +32,16 @@ const Otp = ({
       otp: OTP,
     };
     const verifyOTPData = await verifyOTP(verifyOtpData);
-    const { status, providerSuccessResponse } = verifyOTPData;
-    if (status) {
-      setNotify({ message: providerSuccessResponse, type: 'success' });
+    const { responseStatus, message, resp } = verifyOTPData;
+    if (responseStatus) {
+      setUser({ ...user, ...resp.result.data.user });
+      setNotify({ message, type: 'success' });
       setOTP('');
       goBack.push(window.location.pathname);
       setGoBack(goBack);
       browserHistory.push('/welcome');
     } else {
-      setNotify({ message: 'Incorrect OTP', type: 'success' });
+      setNotify({ message, type: 'error' });
     }
     setLoader(false);
   };
