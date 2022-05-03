@@ -9,15 +9,20 @@ export default function App() {
   const [isEnrl, setEnrl] = useState(true);
 
   useEffect(() => {
-    console.log('Test');
     window.addEventListener('message', function (e) {
       const data = e.data;
-      console.log('data', data);
       try {
         const decoded = JSON.parse(data);
+        if (decoded.channel === 'traineeDetail') {
+          setTimeout(() => {
+            localStorage.setItem("trainee", "");
+            setEnrl(true);
+          }, 1000);
+        }
         if(decoded.channel === 'enketo') {
           setTimeout( () => {
             setTrainee(decoded.message)
+            localStorage.setItem("trainee", JSON.stringify(decoded.message));
             setEnrl(false)
            }, 1000)
         }
@@ -27,6 +32,11 @@ export default function App() {
       }
     });
   }, []);
+
+  const onLogout = () => {
+    localStorage.setItem("trainee", "");
+    setEnrl(true);
+  }
 
   return (
     <div className="App">
@@ -41,6 +51,13 @@ export default function App() {
           <div className="hariyana-logo">
             <img className="shaksham-small-logo" src={sakshamHaryanaLogo} alt="logo"/>
           </div>
+          {
+            !isEnrl &&
+            <div>
+              <button className="logout" onClick={onLogout}>Logout</button>
+            </div>
+          }
+
         </div>
         <div className="header-text">
           <h2 className="header-text-color">DST Trainee Attendance</h2>
