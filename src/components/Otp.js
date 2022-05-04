@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import OTPInput, { ResendOTP } from 'otp-input-react';
 import { browserHistory } from 'react-router';
-import { onGoBack } from '../common/globals';
+import { onGoBack, storeUser } from '../common/globals';
 import withGoBack from '../redux/HOC/withGoBack';
 import withUser from '../redux/HOC/withUser';
 import withNotify from '../redux/HOC/withNotify';
@@ -35,6 +35,7 @@ const Otp = ({
     const { responseStatus, message, resp } = verifyOTPData;
     if (responseStatus) {
       setUser({ ...user, ...resp.result.data.user });
+      storeUser({ ...user, ...resp.result.data.user });
       setNotify({ message, type: 'success' });
       setOTP('');
       goBack.push(window.location.pathname);
