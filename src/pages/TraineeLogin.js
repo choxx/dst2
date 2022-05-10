@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import formSpec from '../form_spec.json';
+import withUser from '../redux/HOC/withUser';
 
-const TraineeLogin = () => {
+const TraineeLogin = ({ setUser }) => {
   const [trainee, setTrainee] = useState({});
   const [isEnrl, setEnrl] = useState(true);
 
@@ -22,8 +23,10 @@ const TraineeLogin = () => {
         }
         if (decoded.channel === 'enketo') {
           setTimeout(() => {
+            const { resp } = decoded.loginRes;
             setTrainee(decoded.message);
             setEnrl(false);
+            setUser(resp.result.data.user);
           }, 1000);
         }
       } catch (error) {
@@ -31,10 +34,9 @@ const TraineeLogin = () => {
       }
     });
   }, []);
-
   return (
     <>
-      <Header />
+      <Header isLogout={isEnrl} />
       <div className="m-10 text-xl font-bold text-teal-800 text-center">
         <h2 className="header-text-color">DST Trainee Attendance</h2>
       </div>
@@ -62,4 +64,4 @@ const TraineeLogin = () => {
     </>
   );
 };
-export default TraineeLogin;
+export default withUser(TraineeLogin);

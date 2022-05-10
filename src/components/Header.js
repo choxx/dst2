@@ -1,23 +1,31 @@
 import { ArrowLeftIcon } from '@heroicons/react/solid';
 import GoH from '../images/GoH-Transparent.png';
 import haryanaLogo from '../images/SDIT-Haryana.png';
+import withUser from '../redux/HOC/withUser';
+import { userLogout } from '../common/globals';
 
-const Header = ({ title = '', onBackButton = '' }) => (
+const Header = ({
+  title = '', onBackButton = '', user, isLogout = true,
+}) => (
   <>
     <div className="flex flex-row h-10 w-full bg-teal-700 text-white text-center justify-center">
-      <div className="w-1/6 self-center pl-2" onClick={onBackButton === '' ? () => {} : onBackButton}>
+      <div
+        className="w-1/6 self-center pl-2"
+        onClick={onBackButton === '' ? () => {
+        } : onBackButton}
+      >
         {
-            onBackButton && <ArrowLeftIcon className="w-7 h-7" aria-hidden="true" />
-          }
+          onBackButton && <ArrowLeftIcon className="w-7 h-7" aria-hidden="true" />
+        }
       </div>
       <div className="w-10/12 pr-12 self-center">
         {
-            title !== '' && <span className="text-2xl" aria-hidden="true">{title}</span>
-          }
+          title !== '' && <span className="text-2xl" aria-hidden="true">{title}</span>
+        }
       </div>
     </div>
     <div className="relative bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
         <div
           className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10"
         >
@@ -29,14 +37,31 @@ const Header = ({ title = '', onBackButton = '' }) => (
               alt=""
             />
           </div>
-          <img
-            className="h-14 w-auto sm:h-14"
-            src={GoH}
-            alt=""
-          />
+          <div
+            className="flex justify-between items-center space-x-4"
+          >
+            <img
+              className="h-14 w-auto sm:h-14"
+              src={GoH}
+              alt=""
+            />
+            {
+                user !== undefined && user !== null && !isLogout
+                && (
+                <button
+                  onClick={() => userLogout()}
+                  type="button"
+                  className="bg-teal-700 text-white p-2 text-lg w-auto"
+                >
+                  Logout
+                </button>
+                )
+              }
+          </div>
         </div>
       </div>
+
     </div>
   </>
 );
-export default Header;
+export default withUser(Header);

@@ -1,8 +1,9 @@
 import { browserHistory } from 'react-router';
 import { isEmpty } from 'lodash';
 import {
-  goBackSet,
+  goBackSet, resetRedux, notifySet,
 } from '../redux/actions';
+import { store } from '../redux/store';
 
 export const USER_STORAGE_KEY = 'DST_USER_DATA';
 
@@ -15,6 +16,15 @@ export const storeUser = (user) => {
 export const getUser = async () => {
   const user = await localStorage.getItem(USER_STORAGE_KEY);
   return user !== 'null' && !isEmpty(user) ? JSON.parse(user) : null;
+};
+
+export const userLogout = async () => {
+  console.log('call logout');
+  setTimeout(() => {
+    store.dispatch(resetRedux());
+    store.dispatch(notifySet({ type: 'success', message: 'You have successfully signed out.' }));
+    window.location = '/';
+  }, 100);
 };
 
 export const onGoBack = (goBack) => {
