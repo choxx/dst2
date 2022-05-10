@@ -15,6 +15,11 @@ const TraineeLogin = () => {
       console.log('data', data);
       try {
         const decoded = JSON.parse(data);
+        if (decoded.channel === 'traineeDetail') {
+          setTimeout(() => {
+            setEnrl(true);
+          }, 1000);
+        }
         if (decoded.channel === 'enketo') {
           setTimeout(() => {
             setTrainee(decoded.message);
