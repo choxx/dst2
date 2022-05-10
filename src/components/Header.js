@@ -37,6 +37,7 @@ const Header = ({
               alt=""
             />
           </div>
+          <div className="font-bold text-xl text-center text-teal-700">Dual System of Training (DST)</div>
           <div
             className="flex justify-between items-center space-x-4"
           >
