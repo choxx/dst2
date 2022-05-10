@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
-import { userSet } from '../actions';
+import { traineeSet } from '../actions';
 
 const mapDispatchToProps = (dispatch) => ({
-  setUser: (data) => {
-    dispatch(userSet(data));
+  setTrainee: (data) => {
+    dispatch(traineeSet(data));
   },
 });
 
 const mapStateToProps = (state) => ({
-  user: state.user ? state.user : null,
+  trainee: state.trainee ? state.trainee : {},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps);

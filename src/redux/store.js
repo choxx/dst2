@@ -2,14 +2,14 @@ import { createStore, combineReducers } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import reduxStorage from 'redux-persist/lib/storage';
 import {
-  goBack, loader, notify, user,
+  goBack, loader, notify, user, trainee,
 } from './reducers';
 
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
   whitelist: [
-    'goBack',
+    'goBack', 'user', 'trainee',
   ],
 };
 
@@ -20,6 +20,7 @@ const persistedReducer = persistReducer(
     loader,
     notify,
     user,
+    trainee,
   }),
 );
 

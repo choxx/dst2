@@ -5,7 +5,7 @@ import withUser from '../redux/HOC/withUser';
 import { userLogout } from '../common/globals';
 
 const Header = ({
-  title = '', onBackButton = '', user, isLogout = true,
+  title = '', onBackButton = '', user,
 }) => (
   <>
     <div className="flex flex-row h-10 w-full bg-teal-700 text-white text-center justify-center">
@@ -46,7 +46,7 @@ const Header = ({
               alt=""
             />
             {
-                user !== undefined && user !== null && !isLogout
+                (user !== undefined && user !== null && Object.keys(user).length > 0)
                 && (
                 <button
                   onClick={() => userLogout()}

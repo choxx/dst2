@@ -1,7 +1,7 @@
 import { browserHistory } from 'react-router';
 import { isEmpty } from 'lodash';
 import {
-  goBackSet, resetRedux, notifySet,
+  goBackSet, notifySet, resetRedux,
 } from '../redux/actions';
 import { store } from '../redux/store';
 
@@ -14,14 +14,15 @@ export const storeUser = (user) => {
 
 // GET USER FROM LOCAL STORAGE
 export const getUser = async () => {
-  const user = await localStorage.getItem(USER_STORAGE_KEY);
+  const user = localStorage.getItem(USER_STORAGE_KEY);
   return user !== 'null' && !isEmpty(user) ? JSON.parse(user) : null;
 };
 
 export const userLogout = async () => {
   console.log('call logout');
-  setTimeout(() => {
+  setTimeout(async () => {
     store.dispatch(resetRedux());
+    await localStorage.setItem(USER_STORAGE_KEY, null);
     store.dispatch(notifySet({ type: 'success', message: 'You have successfully signed out.' }));
     window.location = '/';
   }, 100);

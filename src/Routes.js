@@ -17,14 +17,15 @@ import CreateDstMc from './components/DstMc/CreateDstMc';
 import TrainerOptions from './components/Trainer/TrainerOptions';
 import Global from './components/Global';
 import { getUser } from './common/globals';
+import TraineeDetail from './pages/TraineeDetail';
 
 class Routes extends PureComponent {
   // eslint-disable-next-line class-methods-use-this
   checkAuth = async () => {
     const user = await getUser();
-    console.log('user', user);
-    if (!isEmpty(user)) {
-      browserHistory.push('/welcome');
+
+    if (!isEmpty(user) && user !== null) {
+      browserHistory.push('/trainee');
     }
     window.scrollTo(0, 0);
   };
@@ -47,7 +48,8 @@ class Routes extends PureComponent {
             <Route component={App}>
               <Route exact path="/" components={{ component: Home }} onEnter={this.checkAuth} />
               <Route exact path="/principal-login" components={{ component: PrincipalLogin }} />
-              <Route exact path="/trainee-login" components={{ component: TraineeLogin }} />
+              <Route exact path="/trainee-login" components={{ component: TraineeLogin }} onEnter={this.checkAuth} />
+              <Route exact path="/trainee" components={{ component: TraineeDetail }} onEnter={this.requireAuth} />
               <Route exact path="/verify-otp" components={{ component: Otp }} onEnter={this.checkAuth} />
               <Route exact path="/welcome" components={{ component: Welcome }} />
               <Route exact path="/trainer-login" components={{ component: TrainerLogin }} />

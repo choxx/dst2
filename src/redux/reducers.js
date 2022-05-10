@@ -4,6 +4,7 @@ import {
   LOADER_SET,
   NOTIFY_SET,
   USER_SET,
+  TRAINEE_SET,
 } from './actions';
 
 export const DEFAULT_USER = {
@@ -42,14 +43,21 @@ export const notify = (state = {}, action) => {
   }
 };
 
-export const user = (state = DEFAULT_USER, action) => {
+export const user = (state = null, action) => {
   switch (action.type) {
     case USER_SET:
       return action.user;
-    case RESET_REDUX: {
-      const userData = DEFAULT_USER;
-      return userData;
-    }
+    case RESET_REDUX:
+      return null;
+    default:
+      return state;
+  }
+};
+
+export const trainee = (state = {}, action) => {
+  switch (action.type) {
+    case TRAINEE_SET:
+      return action.trainee;
 
     default:
       return state;

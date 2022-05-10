@@ -3,6 +3,7 @@ export const GO_BACK_SET = 'goBack/SET';
 export const LOADER_SET = 'loader/SET';
 export const NOTIFY_SET = 'notify/SET';
 export const USER_SET = 'user/SET';
+export const TRAINEE_SET = 'trainee/SET';
 
 export const resetRedux = () => ({
   type: RESET_REDUX,
@@ -26,4 +27,9 @@ export const notifySet = (state) => ({
 export const userSet = (user) => ({
   type: USER_SET,
   user,
+});
+
+export const traineeSet = (trainee) => ({
+  type: TRAINEE_SET,
+  trainee,
 });
