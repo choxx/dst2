@@ -24,6 +24,11 @@ const Home = ({ goBack, setGoBack }) => {
     browserHistory.push('/trainee-login');
   };
 
+  const onTrainerDetail = () => {
+    onGoBack();
+    browserHistory.push('/trainer-detail');
+  };
+
   return (
     <>
       <Header />
@@ -63,6 +68,16 @@ const Home = ({ goBack, setGoBack }) => {
           >
             <UserIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
             Login as a Trainee
+          </button>
+        </div>
+        <div>
+          <button
+            onClick={onTrainerDetail}
+            type="button"
+            className="inline-flex items-center px-4 py-2 border border-teal-700 shadow-sm text-base font-medium rounded-md text-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          >
+            <UserIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
+            Trainer login for beta launch
           </button>
         </div>
       </div>
