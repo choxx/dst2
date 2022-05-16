@@ -27,9 +27,9 @@ const Header = ({
     <div className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         <div
-          className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10"
+          className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:space-x-10"
         >
-          <div className="flex justify-start lg:w-0 lg:flex-1">
+          <div className="flex justify-start">
             <span className="sr-only">Workflow</span>
             <img
               className="h-8 w-auto sm:h-10"
@@ -37,11 +37,11 @@ const Header = ({
               alt=""
             />
           </div>
-          <div className="flex justify-between items-center lg:w-0 lg:flex-1 font-bold text-xl text-center text-teal-700">
+          <div className="font-bold text-xl text-center text-teal-700 w-100">
             Dual System of Training (DST)
           </div>
           <div
-            className="flex justify-between items-center space-x-4"
+            className="flex justify-end space-x-4"
           >
             <img
               className="h-14 w-auto sm:h-14"
