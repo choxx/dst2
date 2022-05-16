@@ -43,7 +43,7 @@ export const sendOTP = async (data) => fetch(`${OTP_API_URL}/dst/sendOTP?${query
 }).then(async (response) => await validateResponse(response))
   .catch((error) => handleNetworkError(error));
 
-export const verifyOTP = async (data) => fetch(`${OTP_API_URL}/dst/verifyOTP?${queryString(data)}`, {
+export const verifyOTP = async (data, role) => fetch(`${OTP_API_URL}/dst/${role.role}/loginOrRegister?${queryString(data)}`, {
   method: 'GET',
   headers: {
     Accept: 'application/json',

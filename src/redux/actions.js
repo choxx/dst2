@@ -4,6 +4,7 @@ export const LOADER_SET = 'loader/SET';
 export const NOTIFY_SET = 'notify/SET';
 export const USER_SET = 'user/SET';
 export const TRAINEE_SET = 'trainee/SET';
+export const PHONE_SET = 'phone/SET';
 
 export const resetRedux = () => ({
   type: RESET_REDUX,
@@ -32,4 +33,9 @@ export const userSet = (user) => ({
 export const traineeSet = (trainee) => ({
   type: TRAINEE_SET,
   trainee,
+});
+
+export const phoneSet = (phone) => ({
+  type: PHONE_SET,
+  phone,
 });

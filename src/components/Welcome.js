@@ -1,18 +1,26 @@
 import React from 'react';
 import { UserIcon } from '@heroicons/react/solid';
 import { browserHistory } from 'react-router';
-import { onGoBack } from '../common/globals';
+import { onGoBack, ROLE } from '../common/globals';
 import withGoBack from '../redux/HOC/withGoBack';
+import withUser from '../redux/HOC/withUser';
 import Header from './Header';
 
-const Welcome = ({ goBack, setGoBack }) => {
+const Welcome = ({ goBack, setGoBack, user }) => {
   const onBack = () => {
     onGoBack(goBack);
   };
   const onNext = () => {
-    goBack.push(window.location.pathname);
-    setGoBack(goBack);
-    browserHistory.push('/dst-mc');
+    if (user !== null) {
+      if (user.user.registrations[0].roles[0] === ROLE.PRINCIPAL) {
+        browserHistory.push('/dst-mc');
+      }
+      if (user.user.registrations[0].roles[0] === ROLE.TRAINER) {
+        browserHistory.push('/trainer-options');
+      }
+      goBack.push(window.location.pathname);
+      setGoBack(goBack);
+    }
   };
   return (
     <div>
@@ -61,4 +69,4 @@ const Welcome = ({ goBack, setGoBack }) => {
     </div>
   );
 };
-export default withGoBack(Welcome);
+export default withUser(withGoBack(Welcome));

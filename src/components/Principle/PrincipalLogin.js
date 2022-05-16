@@ -4,17 +4,16 @@ import { Field, Form } from 'react-final-form';
 import withGoBack from '../../redux/HOC/withGoBack';
 import withLoader from '../../redux/HOC/withLoader';
 import withNotify from '../../redux/HOC/withNotify';
-import withUser from '../../redux/HOC/withUser';
-import { onGoBack } from '../../common/globals';
+import withPhone from '../../redux/HOC/withPhone';
+import { onGoBack, ROLE } from '../../common/globals';
 import { renderField, required } from '../../helpers/form-validations';
 import { sendOTP } from '../../utils/utils';
 import Header from '../Header';
 
 const PrincipalLogin = ({
-  goBack, setGoBack, setLoader, setNotify, setUser,
+  goBack, setGoBack, setLoader, setNotify, setPhone,
 }) => {
   const onSubmit = async (formData) => {
-    browserHistory.push('/verify-otp');
     const otpData = {
       phone: formData.hrms,
     };
@@ -22,7 +21,9 @@ const PrincipalLogin = ({
     const otpRes = await sendOTP(otpData);
     const { responseStatus, message, resp } = otpRes;
     if (responseStatus) {
-      setUser({ ...resp.result.data });
+      setPhone({ role: ROLE.PRINCIPAL, ...resp.result.data });
+      /* setUser({ ...resp.result.data });
+      storeUser({ ...resp.result.data.user }); */
       setNotify({ message: 'OTP send successfully.', type: 'success' });
       goBack.push(window.location.pathname);
       setGoBack(goBack);
@@ -35,7 +36,6 @@ const PrincipalLogin = ({
   const onBack = () => {
     onGoBack(goBack);
   };
-
   return (
     <div>
       <Header />
@@ -83,4 +83,4 @@ const PrincipalLogin = ({
     </div>
   );
 };
-export default withUser(withNotify(withLoader(withGoBack(PrincipalLogin))));
+export default withPhone(withNotify(withLoader(withGoBack(PrincipalLogin))));

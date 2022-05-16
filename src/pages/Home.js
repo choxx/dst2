@@ -9,7 +9,7 @@ const Home = ({ goBack, setGoBack }) => {
     setGoBack(goBack);
   };
 
-  /* const onPrincipalLogin = () => {
+  const onPrincipalLogin = () => {
     onGoBack();
     browserHistory.push('/principal-login');
   };
@@ -18,7 +18,7 @@ const Home = ({ goBack, setGoBack }) => {
     onGoBack();
     browserHistory.push('/trainer-login');
   };
-*/
+
   const onTraineeLogin = () => {
     onGoBack();
     browserHistory.push('/trainee-login');
@@ -36,7 +36,7 @@ const Home = ({ goBack, setGoBack }) => {
         Select your user profile to log in
       </div>
       <div className="mt-20 flex flex-col space-y-8 items-center justify-center">
-        {/* <div>
+        <div>
           <button
             onClick={onPrincipalLogin}
             type="button"
@@ -59,7 +59,7 @@ const Home = ({ goBack, setGoBack }) => {
             <UserIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
             Login as a Trainer
           </button>
-        </div> */}
+        </div>
         <div>
           <button
             onClick={onTraineeLogin}

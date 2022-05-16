@@ -19,6 +19,7 @@
         "react"
     ],
     "rules": {
+        "class-methods-use-this": "off",
         "no-return-await": "off",
         "no-console": "off",
         "semi": 2,

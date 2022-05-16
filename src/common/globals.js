@@ -47,3 +47,9 @@ export const queryString = (obj) => {
   }
   return str.join('&');
 };
+
+export const ROLE = {
+  PRINCIPAL: 'principal',
+  TRAINER: 'trainer',
+  TRAINEE: 'trainee',
+};

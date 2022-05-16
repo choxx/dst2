@@ -6,11 +6,12 @@ import withGoBack from '../redux/HOC/withGoBack';
 import withUser from '../redux/HOC/withUser';
 import withNotify from '../redux/HOC/withNotify';
 import withLoader from '../redux/HOC/withLoader';
+import withPhone from '../redux/HOC/withPhone';
 import Header from './Header';
 import { verifyOTP } from '../utils/utils';
 
 const Otp = ({
-  goBack, setGoBack, user, setNotify, setLoader, setUser,
+  goBack, setGoBack, user, setNotify, setLoader, setUser, phone,
 }) => {
   const [OTP, setOTP] = useState('');
   const renderButton = (buttonProps) => (
@@ -28,10 +29,10 @@ const Otp = ({
   const renderTime = () => React.Fragment;
   const onValidate = async () => {
     const verifyOtpData = {
-      phone: user.phone,
+      phone: phone.phone,
       otp: OTP,
     };
-    const verifyOTPData = await verifyOTP(verifyOtpData);
+    const verifyOTPData = await verifyOTP(verifyOtpData, { role: phone.role });
     const { responseStatus, message, resp } = verifyOTPData;
     if (responseStatus) {
       setUser({ ...user, ...resp.result.data.user });
@@ -49,7 +50,6 @@ const Otp = ({
   const onBack = () => {
     onGoBack(goBack);
   };
-
   return (
     <div>
       <Header />
@@ -102,4 +102,4 @@ const Otp = ({
     </div>
   );
 };
-export default withNotify(withLoader(withUser(withGoBack(Otp))));
+export default withPhone(withNotify(withLoader(withUser(withGoBack(Otp)))));

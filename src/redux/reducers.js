@@ -4,7 +4,7 @@ import {
   LOADER_SET,
   NOTIFY_SET,
   USER_SET,
-  TRAINEE_SET,
+  TRAINEE_SET, PHONE_SET,
 } from './actions';
 
 export const DEFAULT_USER = {
@@ -54,10 +54,20 @@ export const user = (state = null, action) => {
   }
 };
 
-export const trainee = (state = {}, action) => {
+export const trainee = (state = null, action) => {
   switch (action.type) {
     case TRAINEE_SET:
       return action.trainee;
+
+    default:
+      return state;
+  }
+};
+
+export const phone = (state = null, action) => {
+  switch (action.type) {
+    case PHONE_SET:
+      return action.phone;
 
     default:
       return state;

@@ -16,25 +16,27 @@ import DstMc from './components/DstMc/DstMc';
 import CreateDstMc from './components/DstMc/CreateDstMc';
 import TrainerOptions from './components/Trainer/TrainerOptions';
 import Global from './components/Global';
-import { getUser } from './common/globals';
+import { getUser, ROLE } from './common/globals';
 import TraineeDetail from './pages/TraineeDetail';
 import TrainerDetail from './components/Trainer/TrainerDetail';
 
 class Routes extends PureComponent {
-  // eslint-disable-next-line class-methods-use-this
   checkAuth = async () => {
     const user = await getUser();
-
     if (!isEmpty(user) && user !== null) {
-      browserHistory.push('/trainee');
+      if (user.user.registrations[0].roles[0] === ROLE.PRINCIPAL
+        || user.user.registrations[0].roles[0] === ROLE.TRAINER) {
+        browserHistory.push('/welcome');
+      } else {
+        browserHistory.push('/trainee');
+      }
     }
     window.scrollTo(0, 0);
   };
 
-  // eslint-disable-next-line class-methods-use-this
   requireAuth = async () => {
     const user = await getUser();
-    if (isEmpty(user)) {
+    if (isEmpty(user) && user === null) {
       browserHistory.push('/');
       window.scrollTo(0, 0);
     }
@@ -48,15 +50,15 @@ class Routes extends PureComponent {
           <Router history={browserHistory}>
             <Route component={App}>
               <Route exact path="/" components={{ component: Home }} onEnter={this.checkAuth} />
-              <Route exact path="/principal-login" components={{ component: PrincipalLogin }} />
+              <Route exact path="/principal-login" components={{ component: PrincipalLogin }} onEnter={this.checkAuth} />
               <Route exact path="/trainee-login" components={{ component: TraineeLogin }} onEnter={this.checkAuth} />
               <Route exact path="/trainee" components={{ component: TraineeDetail }} onEnter={this.requireAuth} />
               <Route exact path="/verify-otp" components={{ component: Otp }} onEnter={this.checkAuth} />
-              <Route exact path="/welcome" components={{ component: Welcome }} />
-              <Route exact path="/trainer-login" components={{ component: TrainerLogin }} />
+              <Route exact path="/welcome" components={{ component: Welcome }} onEnter={this.requireAuth} />
+              <Route exact path="/trainer-login" components={{ component: TrainerLogin }} onEnter={this.checkAuth} />
               <Route exact path="/dst-mc" components={{ component: DstMc }} onEnter={this.requireAuth} />
-              <Route exact path="/create-dst-mc" components={{ component: CreateDstMc }} />
-              <Route exact path="/trainer-options" components={{ component: TrainerOptions }} />
+              <Route exact path="/create-dst-mc" components={{ component: CreateDstMc }} onEnter={this.requireAuth} />
+              <Route exact path="/trainer-options" components={{ component: TrainerOptions }} onEnter={this.requireAuth} />
               <Route exact path="/trainer-detail" components={{ component: TrainerDetail }} />
               <Route path="*" components={{ component: NotFound }} />
             </Route>
