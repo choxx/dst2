@@ -18,15 +18,16 @@ const TraineeLogin = ({ setUser, setTrainee }) => {
         const decoded = JSON.parse(data);
         if (decoded.channel === 'enketo') {
           setTimeout(() => {
-            const { resp } = decoded.loginRes;
-            console.log('TraineeDetail', decoded.message);
-            console.log('resp.result.data.user', resp.result.data.user);
+            const resp = decoded.loginRes;
             setTrainee(decoded.message);
-            storeUser(resp.result.data.user);
-            setUser(resp.result.data.user);
+            storeUser(resp);
+            setUser(resp);
             // need to redirect
             browserHistory.push('/trainee');
           }, 1000);
+        } else if (decoded.channel === 'traineeDetail') {
+          localStorage.setItem('traineeRegistationURL', undefined);
+          browserHistory.push('/trainee-registration');
         }
       } catch (error) {
         // console.log(e)

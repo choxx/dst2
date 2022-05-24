@@ -19,6 +19,7 @@ import Global from './components/Global';
 import { getUser } from './common/globals';
 import TraineeDetail from './pages/TraineeDetail';
 import TrainerDetail from './components/Trainer/TrainerDetail';
+import TraineeRegistration from './components/Trainee/TraineeRegistration';
 
 class Routes extends PureComponent {
   // eslint-disable-next-line class-methods-use-this
@@ -58,6 +59,7 @@ class Routes extends PureComponent {
               <Route exact path="/create-dst-mc" components={{ component: CreateDstMc }} />
               <Route exact path="/trainer-options" components={{ component: TrainerOptions }} />
               <Route exact path="/trainer-detail" components={{ component: TrainerDetail }} />
+              <Route exact path="/trainee-registration" components={{ component: TraineeRegistration }} />
               <Route path="*" components={{ component: NotFound }} />
             </Route>
           </Router>

@@ -4,18 +4,20 @@ import Header from '../components/Header';
 import withTrainee from '../redux/HOC/withTrainee';
 
 const TraineeDetail = ({ trainee }) => {
-  console.log('trainee redux', trainee);
   useEffect(() => {
-    console.log('Test');
     window.addEventListener('message', (e) => {
       const { data } = e;
-      console.log('data', data);
       try {
         const decoded = JSON.parse(data);
         if (decoded.channel === 'traineeDetail') {
           setTimeout(() => {
             // need to redirect
-            browserHistory.push('/trainee-login');
+            if (decoded.url !== null && decoded.url !== undefined) {
+              localStorage.setItem('traineeRegistationURL', decoded.url);
+              browserHistory.push('/trainee-registration');
+            } else {
+              browserHistory.push('/trainee-login');
+            }
           }, 1000);
         }
       } catch (error) {
