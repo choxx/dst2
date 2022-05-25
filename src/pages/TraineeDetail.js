@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { browserHistory } from 'react-router';
 import Header from '../components/Header';
-import withTrainee from '../redux/HOC/withTrainee';
 
-const TraineeDetail = ({ trainee }) => {
+const TraineeDetail = () => {
   useEffect(() => {
     window.addEventListener('message', (e) => {
       const { data } = e;
@@ -25,6 +24,7 @@ const TraineeDetail = ({ trainee }) => {
       }
     });
   }, []);
+  const traineeId = localStorage.getItem('traineeId');
   return (
     <>
       <Header />
@@ -33,7 +33,7 @@ const TraineeDetail = ({ trainee }) => {
       </div>
       <iframe
         frameBorder="0"
-        src={`${process.env.REACT_APP_ENKETO}/preview?xform=${process.env.REACT_APP_GET_FORM}/getFormPrefilled/${trainee.id}&id=preFilled`}
+        src={`${process.env.REACT_APP_ENKETO}/preview?xform=${process.env.REACT_APP_GET_FORM}/getFormPrefilled/${traineeId}&id=preFilled`}
         title="Test Geolocation"
         allow="geolocation"
         width="100%"
@@ -42,4 +42,4 @@ const TraineeDetail = ({ trainee }) => {
     </>
   );
 };
-export default withTrainee(TraineeDetail);
+export default TraineeDetail;

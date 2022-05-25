@@ -22,6 +22,7 @@ const TraineeLogin = ({ setUser, setTrainee }) => {
             setTrainee(decoded.message);
             storeUser(resp);
             setUser(resp);
+            localStorage.setItem('traineeId', decoded.message.id);
             // need to redirect
             browserHistory.push('/trainee');
           }, 1000);
