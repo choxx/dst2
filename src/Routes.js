@@ -11,14 +11,14 @@ import TraineeLogin from './pages/TraineeLogin';
 import PrincipalLogin from './components/Principle/PrincipalLogin';
 import Otp from './components/Otp';
 import Welcome from './components/Welcome';
-import TrainerLogin from './components/Trainer/TrainerLogin';
+// import TrainerLogin from './components/Trainer/TrainerLogin';
 import DstMc from './components/DstMc/DstMc';
 import CreateDstMc from './components/DstMc/CreateDstMc';
 import TrainerOptions from './components/Trainer/TrainerOptions';
 import Global from './components/Global';
 import { getUser } from './common/globals';
 import TraineeDetail from './pages/TraineeDetail';
-import TrainerDetail from './components/Trainer/TrainerDetail';
+// import TrainerDetail from './components/Trainer/TrainerDetail';
 import TraineeRegistration from './components/Trainee/TraineeRegistration';
 
 class Routes extends PureComponent {
@@ -54,11 +54,15 @@ class Routes extends PureComponent {
               <Route exact path="/trainee" components={{ component: TraineeDetail }} onEnter={this.requireAuth} />
               <Route exact path="/verify-otp" components={{ component: Otp }} onEnter={this.checkAuth} />
               <Route exact path="/welcome" components={{ component: Welcome }} />
-              <Route exact path="/trainer-login" components={{ component: TrainerLogin }} />
+              {/*
+               <Route exact path="/trainer-login" components={{ component: TrainerLogin }} />
+               */}
               <Route exact path="/dst-mc" components={{ component: DstMc }} onEnter={this.requireAuth} />
               <Route exact path="/create-dst-mc" components={{ component: CreateDstMc }} />
               <Route exact path="/trainer-options" components={{ component: TrainerOptions }} />
+              {/*
               <Route exact path="/trainer-detail" components={{ component: TrainerDetail }} />
+              */}
               <Route exact path="/trainee-registration" components={{ component: TraineeRegistration }} />
               <Route path="*" components={{ component: NotFound }} />
             </Route>
