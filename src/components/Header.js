@@ -15,7 +15,7 @@ const Header = ({
     });
   });
   return (
-    <>
+    <div className="sticky top-0 z-50">
       <div className="flex flex-row h-10 w-full bg-teal-700 text-white text-center justify-center">
         <div
           className="w-1/6 self-center pl-2"
@@ -72,7 +72,7 @@ const Header = ({
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default withUser(Header);
