@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { browserHistory } from 'react-router';
 import Header from '../components/Header';
+import { userLogout } from '../common/globals';
 
 const TraineeDetail = () => {
   useEffect(() => {
@@ -9,15 +10,16 @@ const TraineeDetail = () => {
       try {
         const decoded = JSON.parse(data);
         if (decoded.channel === 'traineeDetail') {
-          setTimeout(() => {
+          setTimeout(async () => {
             // need to redirect
             if (decoded.url !== null && decoded.url !== undefined) {
               localStorage.setItem('traineeRegistationURL', decoded.url);
               browserHistory.push('/trainee-registration');
             } else {
+              await userLogout();
               browserHistory.push('/trainee-login');
             }
-          }, 1000);
+          }, 2000);
         }
       } catch (error) {
         // console.log(e)

@@ -7,7 +7,7 @@ import { storeUser } from '../../common/globals';
 const TraineeRegistration = () => {
   let url = `${process.env.REACT_APP_GET_FORM}/getForm/traineeRegistration`;
   const customURL = localStorage.getItem('traineeRegistationURL');
-  localStorage.setItem('DST_USER_DATA', null);
+  // localStorage.setItem('DST_USER_DATA', null);
   if (customURL !== null && customURL !== undefined && customURL !== 'undefined') url = customURL;
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const TraineeRegistration = () => {
       try {
         const decoded = JSON.parse(data);
         if (decoded.channel === 'traineeRegistration' && decoded.traineeId !== null) {
-          localStorage.setItem('DST_USER_DATA', null);
+          localStorage.setItem('DST_USER_DATA', decoded.user);
           setTimeout(() => {
             storeUser(response);
             localStorage.setItem('traineeId', decoded.traineeId);
