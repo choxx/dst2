@@ -26,7 +26,7 @@ const TraineeLogin = ({ setUser, setTrainee }) => {
             // need to redirect
             browserHistory.push('/trainee');
           }, 1000);
-        } else if (decoded.channel === 'traineeDetail') {
+        } else if (decoded.channel === 'traineeAfterLoginDetail') {
           localStorage.setItem('traineeRegistationURL', undefined);
           browserHistory.push('/trainee-registration');
         }

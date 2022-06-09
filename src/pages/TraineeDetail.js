@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { browserHistory } from 'react-router';
 import Header from '../components/Header';
-import { userLogout } from '../common/globals';
+// import { userLogout } from '../common/globals';
 
 const TraineeDetail = () => {
   useEffect(() => {
@@ -16,7 +16,7 @@ const TraineeDetail = () => {
               localStorage.setItem('traineeRegistationURL', decoded.url);
               browserHistory.push('/trainee-registration');
             } else {
-              await userLogout();
+              // await userLogout();
               browserHistory.push('/trainee-login');
             }
           }, 2000);
