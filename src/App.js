@@ -3,6 +3,7 @@ import './App.css';
 import sakshamHaryanaLogo from './images/saksham-haryana-logo.png';
 import GoH from './images/GoH-Transparent.png';
 import haryanaLogo from './images/SDIT-Haryana.png';
+import {IS_UNDER_MAINTENANCE} from './common/config';
 
 export default function App() {
   const [trainee, setTrainee] = useState({});
@@ -40,29 +41,30 @@ export default function App() {
 
   return (
     <div className="App">
-      <header>
-        <div className="row logo">
-          <div className="shaksham-logo">
-            <img className="haiyana-small-logo" src={GoH} alt="logo"/>
-          </div>
-          <div>
-            <img className="iti-small-logo" src={haryanaLogo} alt="logo"/>
-          </div>
-          <div className="hariyana-logo">
-            <img className="shaksham-small-logo" src={sakshamHaryanaLogo} alt="logo"/>
-          </div>
-          {
-            !isEnrl &&
-            <div>
-              <button className="logout" onClick={onLogout}>Logout</button>
+    {!IS_UNDER_MAINTENANCE ? <>
+        <header>
+          <div className="row logo">
+            <div className="shaksham-logo">
+              <img className="haiyana-small-logo" src={GoH} alt="logo"/>
             </div>
-          }
+            <div>
+              <img className="iti-small-logo" src={haryanaLogo} alt="logo"/>
+            </div>
+            <div className="hariyana-logo">
+              <img className="shaksham-small-logo" src={sakshamHaryanaLogo} alt="logo"/>
+            </div>
+            {
+              !isEnrl &&
+              <div>
+                <button className="logout" onClick={onLogout}>Logout</button>
+              </div>
+            }
 
-        </div>
-        <div className="header-text">
-          <h2 className="header-text-color">DST Trainee Attendance</h2>
-        </div>
-      </header>
+          </div>
+          <div className="header-text">
+            <h2 className="header-text-color">DST Trainee Attendance</h2>
+          </div>
+        </header>
         {isEnrl ?
           <iframe
             frameBorder="0"
@@ -72,7 +74,7 @@ export default function App() {
             width={'100%'}
             height={'500px'}>
           </iframe>
-           :
+          :
           <iframe
             frameBorder="0"
             src={`${process.env.REACT_APP_ENKETO}/preview?xform=${process.env.REACT_APP_GET_FORM}/getFormPrefilled/${trainee.id}&id=preFilled`}
@@ -81,6 +83,10 @@ export default function App() {
             width={'100%'}
             height={'650px'}>
           </iframe>}
-    </div>
+      </>
+      :
+      <div className="coming-soon-text">The platform is currently under maintenance. It will get live soon.</div>
+    }
+  </div>
   )
 }
