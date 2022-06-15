@@ -99,7 +99,7 @@
 .coming-soon-text {
   color: #006666;
   font-size: 50px;
-  margin-top: 450px;
+  margin-top: 350px;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -112,6 +112,11 @@
   .iti-small-logo {
     width: 75px;
     margin: 0 15px;
+  }
+  .coming-soon-text {
+    color: #006666;
+    font-size: 50px;
+    margin-top: 350px;
   }
 }
 
@@ -126,6 +131,11 @@
     width: 75px;
     margin: 0 15px;
   }
+  .coming-soon-text {
+    color: #006666;
+    font-size: 50px;
+    margin-top: 250px;
+  }
 }
 
 
@@ -139,5 +149,10 @@
   .iti-small-logo {
     width: 100%;
     margin: 0;
+  }
+  .coming-soon-text {
+    color: #006666;
+    font-size: 50px;
+    margin-top: 150px;
   }
 }

@@ -4,6 +4,7 @@ import sakshamHaryanaLogo from './images/saksham-haryana-logo.png';
 import GoH from './images/GoH-Transparent.png';
 import haryanaLogo from './images/SDIT-Haryana.png';
 import {IS_UNDER_MAINTENANCE} from './common/config';
+import warning from './images/warning.png';
 
 export default function App() {
   const [trainee, setTrainee] = useState({});
@@ -85,7 +86,14 @@ export default function App() {
           </iframe>}
       </>
       :
-      <div className="coming-soon-text">The platform is currently under maintenance. It will get live soon.</div>
+      <div  className="coming-soon-text">
+        <div>
+          <img src={warning} width="300px"/>
+        </div>
+        <div>
+          The platform is currently under maintenance. It will get live soon.
+        </div>
+      </div>
     }
   </div>
   )
