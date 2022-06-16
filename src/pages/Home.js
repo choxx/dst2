@@ -85,14 +85,16 @@ const Home = ({ goBack, setGoBack }) => {
         </div> */}
       </div>
 
-      <div className="absolute text-teal-700 text-center inset-x-0 bottom-0 p-28">
-        <button
-          type="button"
-          className="inline-flex items-center px-4 py-2 border border-teal-700 shadow-sm text-base font-medium rounded-md text-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-        >
-          <InformationCircleIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
-          <a href="https://drive.google.com/drive/folders/1iEKsiWWA-plrFwk4izoCBaer6ug0NSnu" target="_blank" rel="noreferrer">Help</a>
-        </button>
+      <div className="absolute text-teal-700 text-center inset-x-0 bottom-0 p-32">
+        <a href="https://drive.google.com/drive/folders/1iEKsiWWA-plrFwk4izoCBaer6ug0NSnu" target="_blank" rel="noreferrer">
+          <button
+            type="button"
+            className="inline-flex items-center px-4 py-2 border border-teal-700 shadow-sm text-base font-medium rounded-md text-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          >
+            <InformationCircleIcon className="-ml-1 mr-3 h-5 w-5" />
+            Help
+          </button>
+        </a>
       </div>
       <div className="absolute text-teal-700 text-center inset-x-0 bottom-0 p-12">Please refer above for FAQs and raising grievances</div>
 
