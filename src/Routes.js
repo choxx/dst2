@@ -18,8 +18,10 @@ import TrainerOptions from './components/Trainer/TrainerOptions';
 import Global from './components/Global';
 import { getUser } from './common/globals';
 import TraineeDetail from './pages/TraineeDetail';
-// import TrainerDetail from './components/Trainer/TrainerDetail';
+import TrainerDetail from './components/Trainer/TrainerDetail';
 import TraineeRegistration from './components/Trainee/TraineeRegistration';
+import PrincipalOptions from "./components/Principle/PrincipalOptions";
+import ViewDstMc from "./components/DstMc/ViewDstMc";
 
 class Routes extends PureComponent {
   // eslint-disable-next-line class-methods-use-this
@@ -58,11 +60,13 @@ class Routes extends PureComponent {
                <Route exact path="/trainer-login" components={{ component: TrainerLogin }} />
                */}
               <Route exact path="/dst-mc" components={{ component: DstMc }} onEnter={this.requireAuth} />
+              <Route exact path="/view-dst-mc" components={{ component: ViewDstMc }} />
               <Route exact path="/create-dst-mc" components={{ component: CreateDstMc }} />
               <Route exact path="/trainer-options" components={{ component: TrainerOptions }} />
-              {/*
+              <Route exact path="/principal-options" components={{ component: PrincipalOptions }} />
+
               <Route exact path="/trainer-detail" components={{ component: TrainerDetail }} />
-              */}
+
               <Route exact path="/trainee-registration" components={{ component: TraineeRegistration }} />
               <Route path="*" components={{ component: NotFound }} />
             </Route>

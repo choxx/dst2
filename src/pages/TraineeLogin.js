@@ -47,7 +47,7 @@ const TraineeLogin = ({ setUser, setTrainee }) => {
         title="Enrollment"
         allow="geolocation"
         width="100%"
-        height="500px"
+        style={{ display: 'flex', flexGrow: 1 }}
       />
     </>
   );

@@ -9,7 +9,7 @@ const Home = ({ goBack, setGoBack }) => {
     setGoBack(goBack);
   };
 
-  /* const onPrincipalLogin = () => {
+   const onPrincipalLogin = () => {
     onGoBack();
     browserHistory.push('/principal-login');
   };
@@ -18,7 +18,6 @@ const Home = ({ goBack, setGoBack }) => {
     onGoBack();
     browserHistory.push('/trainer-login');
   };
-*/
   const onTraineeLogin = () => {
     onGoBack();
     browserHistory.push('/trainee-login');
@@ -36,7 +35,7 @@ const Home = ({ goBack, setGoBack }) => {
         Select your user profile to log in
       </div>
       <div className="mt-20 flex flex-col space-y-8 items-center justify-center">
-        {/* <div>
+         <div>
           <button
             onClick={onPrincipalLogin}
             type="button"
@@ -45,7 +44,7 @@ const Home = ({ goBack, setGoBack }) => {
              focus:ring-offset-2 focus:ring-teal-500"
           >
             <UserIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
-            Login as a Principal
+              Log in as a Principal
           </button>
         </div>
         <div>
@@ -57,9 +56,9 @@ const Home = ({ goBack, setGoBack }) => {
             focus:ring-offset-2 focus:ring-teal-500"
           >
             <UserIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
-            Login as a Trainer
+              Log in as a Trainer
           </button>
-        </div> */}
+        </div>
         <div>
           <button
             onClick={onTraineeLogin}
@@ -67,7 +66,7 @@ const Home = ({ goBack, setGoBack }) => {
             className="inline-flex items-center px-4 py-2 border border-teal-700 shadow-sm text-base font-medium rounded-md text-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           >
             <UserIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
-            Trainee Login
+              Log in as a Trainee
           </button>
         </div>
         {/* <div>

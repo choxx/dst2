@@ -23,14 +23,15 @@ const Header = ({
           } : onBackButton}
         >
           {
-            onBackButton && <ArrowLeftIcon className="w-7 h-7" aria-hidden="true" />
+            onBackButton && <ArrowLeftIcon className="w-7 h-7 cursor-pointer" aria-hidden="true" />
           }
         </div>
-        <div className="w-10/12 pr-12 self-center">
+        <div className="grow self-center">
           {
             title !== '' && <span className="text-2xl" aria-hidden="true">{title}</span>
           }
         </div>
+        <div className="w-1/6 self-center pr-2"></div>
       </div>
       <div className="relative bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
