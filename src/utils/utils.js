@@ -71,14 +71,13 @@ export const RefreshToken = async (data) => {
     },
     body: JSON.stringify(data)
   });
-  const validatedResponse = await validateResponse(res);
-  console.log('validatesssssss', validatedResponse);
-  if(validatedResponse.token){
-    const user = store.getState().user;
-    user.user.token = validatedResponse.token;
-    user.user.refreshToken = validatedResponse.refreshToken;
-    user.user.tokenExpirationInstant = validatedResponse.tokenExpirationInstant;
-    store.dispatch(userSet(user));
+  const {result: {user}} = await validateResponse(res);
+  if(user.token){
+    const localUser = store.getState().user;
+    localUser.user.token = user.token;
+    localUser.user.refreshToken = user.refreshToken;
+    localUser.user.tokenExpirationInstant = user.tokenExpirationInstant;
+    store.dispatch(userSet(localUser));
   }else{
     throw new Error('unable to set new token');
   }

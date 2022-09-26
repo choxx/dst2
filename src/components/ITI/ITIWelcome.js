@@ -33,7 +33,6 @@ const ITIWelcome = ({ goBack, setGoBack, setLoader, setNotify, user }) => {
   };
 
   useEffect(() => {
-      console.log('usertttttttttttt', user);
       fetchUserDetails();
   }, []);
 
