@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import OTPInput, { ResendOTP } from 'otp-input-react';
 import { browserHistory } from 'react-router';
-import { onGoBack, storeUser } from '../../common/globals';
+import {onGoBack, storeUser, userLogout} from '../../common/globals';
 import withGoBack from '../../redux/HOC/withGoBack';
 import withUser from '../../redux/HOC/withUser';
 import withNotify from '../../redux/HOC/withNotify';
@@ -38,7 +38,8 @@ const ResetPassword = ({
     ResetPIN(reqData).then((res) => {
       if(res.msg === "Password changed successfully"){
         setNotify({ message: res?.msg || 'PIN Changed successfully', type: 'success' });
-        browserHistory.push('/iti-welcome');
+        userLogout();
+        // browserHistory.push('/iti-login');
       }else{
         setNotify({ message: res.message || 'error occured', type: 'error' });
       }
@@ -84,20 +85,18 @@ const ResetPassword = ({
             </div>
           </div>
 
-
-
-          <div className="flex items-center justify-center">
+          <div className="px-20 flex items-center justify-around">
             <button
                 onClick={onBack}
-                className="bg-teal-700 hover:bg-teal-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+                className="bg-teal-700 hover:bg-teal-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline flex-1"
                 type="button"
             >
               Go Back
             </button>
-
+            <span className="w-5"></span>
             <button
                 onClick={onReset}
-                className="bg-teal-700 hover:bg-teal-500 text-white font-bold py-2 px-4 ml-6 focus:outline-none focus:shadow-outline"
+                className="bg-teal-700 hover:bg-teal-500 text-white font-bold py-2 px-4 ml-6 focus:outline-none focus:shadow-outline flex-1"
                 type="button"
             >
               Reset

@@ -88,17 +88,18 @@ const ITILogin = ({
                       inputStyles={{ border: 'teal 1px solid' }}
                   />
               </div>
-              <div className="p-10 flex item-center justify-center">
+              <div className="py-10 flex item-center justify-around">
                 <button
                   onClick={onBack}
+                  className="bg-teal-700 hover:bg-teal-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline flex-1"
                   type="button"
-                  className="bg-teal-700 text-white p-2 text-lg w-auto"
                 >
                   Go Back
                 </button>
+                <span className="w-5"></span>
                 <button
                   type="submit"
-                  className="bg-teal-700 text-white p-2 ml-6 text-lg w-auto"
+                  className="bg-teal-700 hover:bg-teal-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline flex-1"
                 >
                   Submit
                 </button>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { UserIcon } from '@heroicons/react/solid';
 import { browserHistory } from 'react-router';
-import { onGoBack } from '../../common/globals';
+import {onGoBack, userLogout} from '../../common/globals';
 import withGoBack from '../../redux/HOC/withGoBack';
 import Header from '../Header';
 import withUser from '../../redux/HOC/withUser';
@@ -33,6 +33,7 @@ const ITIWelcome = ({ goBack, setGoBack, setLoader, setNotify, user }) => {
   };
 
   useEffect(() => {
+      console.log('usertttttttttttt', user);
       fetchUserDetails();
   }, []);
 
@@ -67,23 +68,22 @@ const ITIWelcome = ({ goBack, setGoBack, setLoader, setNotify, user }) => {
           <span className="m-2 my-8">{userDetails?.contact_number}</span>
         </div>
       </div>
-      <div className="p-10 flex item-center justify-center">
-        <div className="flex justify-center">
+      <div className="p-10 flex item-center justify-around">
           <button
-            onClick={onResetPassword}
-            type="button"
-            className="bg-teal-700 text-white p-2 text-sm w-auto"
+              onClick={onResetPassword}
+              className="bg-teal-700 hover:bg-teal-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline flex-1"
+              type="button"
           >
-            Reset Password
+              Reset Password
           </button>
+          <span className="w-5"></span>
           <button
-            onClick={onNext}
-            type="button"
-            className="bg-teal-700 text-white p-2 ml-6 text-lg w-auto"
+              onClick={onNext}
+              className="bg-teal-700 hover:bg-teal-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline flex-1"
+              type="button"
           >
-            Next
+              Next
           </button>
-        </div>
       </div>
       <div className="p-10 flex item-center justify-center">
         <span className="text-teal-700">Incase details are incorrect, contact SDIT department</span>
