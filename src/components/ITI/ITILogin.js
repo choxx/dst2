@@ -19,7 +19,7 @@ const ITILogin = ({
 }) => {
   const [OTP, setOTP] = useState('');
   const onSubmit = async (formData) => {
-    if(OTP.length<4){
+    if(formData.pin.length<4){
       store.dispatch(notifySet({
         type: 'error',
         message: 'PIN should be of 4 digit',
@@ -28,7 +28,8 @@ const ITILogin = ({
     }
     const reqData = {
       "loginId": formData.username,
-      "password": OTP,
+      // "password": OTP,
+      "password": formData.pin,
       "applicationId": APPLICATION_ID
     };
     setLoader(true);
@@ -77,6 +78,20 @@ const ITILogin = ({
                 </Field>
               </div>
               <div className="mb-4">
+                <label className="block text-teal-700 text-sm font-bold mb-2" htmlFor="pin">
+                  Enter PIN
+                </label>
+                <Field
+                    className="shadow appearance-none border border-teal-600 rounded w-full py-2 px-3 text-teal-700 leading-tight focus:outline-none focus:shadow-outline"
+                    name="pin"
+                    type="password"
+                    id="pin"
+                    validate={required}
+                >
+                  {renderField}
+                </Field>
+              </div>
+              {/*<div className="mb-4">
                 <label className="block text-teal-700 text-sm font-bold mb-2" htmlFor="username">
                   Enter PIN
                 </label>
@@ -87,7 +102,7 @@ const ITILogin = ({
                       otpType="number"
                       inputStyles={{ border: 'teal 1px solid' }}
                   />
-              </div>
+              </div>*/}
               <div className="py-10 flex item-center justify-around">
                 <button
                   onClick={onBack}

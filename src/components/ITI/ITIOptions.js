@@ -20,9 +20,11 @@ const ITIOptions = ({ goBack, setGoBack, setNotify, user }) => {
   };
 
   const onUpdateAcademicCalendar = () => {
-    goBack.push(window.location.pathname);
-    setGoBack(goBack);
-    window.open(academicCalendarLink?.calendar_link);
+    if(!academicCalendarLink?.calendar_link) {
+      window.open(academicCalendarLink?.calendar_link);
+    }else {
+      window.alert('Academic calendar form has not been updated yet.');
+    }
   };
 
 

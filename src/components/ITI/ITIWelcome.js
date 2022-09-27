@@ -45,24 +45,24 @@ const ITIWelcome = ({ goBack, setGoBack, setLoader, setNotify, user }) => {
       <div className="flex mb-10 items-center justify-center text-2xl font-bold text-teal-700">
         <span className="font-semibold">Welcome</span>
       </div>
-      <div className="flex flex-col space-y-8 items-center justify-center">
-        <div className="text-center bg-teal-700 text-white">
+      <div className="p-10 flex flex-col space-y-8">
+        <div className="text-teal-700">
           <span className="m-2 my-8">ITI Name:</span>
           <span className="m-2 my-8">{userDetails?.iti}</span>
         </div>
-          <div className="text-center bg-teal-700 text-white">
+          <div className="text-teal-700">
               <span className="m-2 my-8">District:</span>
               <span className="m-2 my-8">{userDetails?.district}</span>
           </div>
-        <div className="text-center bg-teal-700 text-white">
+        <div className="text-teal-700">
           <span className="m-2 my-8">Principal:</span>
           <span className="m-2 my-8">{userDetails?.principal_name}</span>
         </div>
-        <div className="text-center bg-teal-700 text-white">
+        <div className="text-teal-700">
           <span className="m-2 my-8">Email ID:</span>
           <span className="m-2 my-8">{userDetails?.email_id}</span>
         </div>
-        <div className="text-center bg-teal-700 text-white">
+        <div className="text-teal-700">
           <span className="m-2 my-8">Phone No.:</span>
           <span className="m-2 my-8">{userDetails?.contact_number}</span>
         </div>
