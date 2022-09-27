@@ -1,0 +1,34 @@
+{
+  "forms": {
+    "dstmc": {
+      "skipOnSuccessMessage": true,
+      "prefill": {
+        "district1": "`Ambala`",
+        "ITI1": "`GITI Ambala City`",
+        "dst_trade1": "`Turner`",
+        "dst_batch1": "`2022-24`"
+      },
+      "submissionURL": "http://esamwad.samagra.io/api/v4/form/submit",
+      "name": "SampleForm",
+      "successCheck": "async (formData) => { return true; }",
+      "onSuccess": {
+        "notificationMessage": "Form submitted successfully",
+        "sideEffect": "async (formData) => { console.log(formData); }",
+        "next": {
+          "type": "form",
+          "id": "form2"
+        }
+      },
+      "onFailure": {
+        "message": "Form submission failed",
+        "sideEffect": "async (formData) => { console.log(formData); }",
+        "next": {
+          "type": "url",
+          "id": "google"
+        }
+      }
+    }
+  },
+  "start": "dstmc",
+  "metaData": {}
+}
