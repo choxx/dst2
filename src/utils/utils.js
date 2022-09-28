@@ -201,6 +201,20 @@ export const createDstMc = (data) => {
   return generateHasuraAPI(query);
 };
 
+//todo: need to test this api
+export const updateDstMc = (data) => {
+  const query = {
+    query: `mutation MyMutation($id: bigint = "", $industry_id: Int = 10) {
+      update_dst_mc_meeting_by_pk(pk_columns: {id: $id}, _set: {industry_id: $industry_id}) {
+        industry_id
+        id
+      }
+    }`,
+    "variables": {id: data.id, industry_id: data.industryId}
+  };
+  return generateHasuraAPI(query);
+};
+
 export const deleteDstMc = (data) => {
   const query = {
     query: `mutation ($id: String) {
@@ -209,6 +223,82 @@ export const deleteDstMc = (data) => {
       }
     }`,
     "variables": {id: data.id}
+  };
+  return generateHasuraAPI(query);
+};
+
+//todo: need to test these filtered apis
+export const getFilteredTrades = (data) => {
+  const query = {
+    query: `query ($iti_id: String) {
+      dst_mc_meeting(where: {iti_id: {_eq: $iti_id}}) {
+        id
+        district
+        iti_id
+        iti {
+          id
+          name
+        }
+        industry {
+          id
+          name
+          district
+        }
+        batch
+        trade
+      }
+    }`,
+    "variables": {iti_id: data.iti_id}
+  };
+  return generateHasuraAPI(query);
+};
+
+export const getFilteredBatch = (data) => {
+  const query = {
+    query: `query ($iti_id: String, $trade_id: String) {
+      dst_mc_meeting(where: {iti_id: {_eq: $iti_id}, trade: {_eq: $trade_id}}) {
+        id
+        district
+        iti_id
+        iti {
+          id
+          name
+        }
+        industry {
+          id
+          name
+          district
+        }
+        batch
+        trade
+      }
+    }`,
+    "variables": {iti_id: data.iti_id}
+  };
+  return generateHasuraAPI(query);
+};
+
+export const getFilteredIndustry = (data) => {
+  const query = {
+    query: `query ($iti_id: String, $industry_id: String, $trade: String) {
+      dst_mc_meeting(where: {iti_id: {_eq: $iti_id}, trade: {_eq: "Electronics Mechanic"}, batch: {_eq: "2022-24"}}) {
+        id
+        district
+        iti_id
+        iti {
+          id
+          name
+        }
+        industry {
+          id
+          name
+          district
+        }
+        batch
+        trade
+      }
+    }`,
+    "variables": {iti_id: data.iti_id}
   };
   return generateHasuraAPI(query);
 };

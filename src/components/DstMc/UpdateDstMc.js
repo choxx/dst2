@@ -1,7 +1,7 @@
 import { onGoBack } from '../../common/globals';
 import withGoBack from '../../redux/HOC/withGoBack';
 import Header from '../Header';
-import formSpecJSON from "./workflow.json";
+import formSpecJSON from "./updateWorkflow.json";
 import React, { useState, useEffect } from 'react';
 
 const UpdateDstMc = ({ goBack }) => {
