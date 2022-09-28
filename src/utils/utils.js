@@ -159,20 +159,6 @@ export const getLoggedInITIDetails = (data) => {
   return generateHasuraAPI(query);
 };
 
-export const createDstMc = (data) => {
-  const query = {
-    query: `mutation create_dst_mc_meeting($objects: [dst_mc_meeting_insert_input!] = {}) {
-      insert_dst_mc_meeting(objects: $objects) {
-        returning {
-          id
-        }
-      }
-    }`,
-    "variables": {objects: data}
-  };
-  return generateHasuraAPI(query);
-};
-
 export const getITIsList = () => {
   const query = {
     query: `query {
@@ -201,4 +187,29 @@ export const getIndustriesList = () => {
   return generateHasuraAPI(query);
 };
 
+export const createDstMc = (data) => {
+  const query = {
+    query: `mutation create_dst_mc_meeting($objects: [dst_mc_meeting_insert_input!] = {}) {
+      insert_dst_mc_meeting(objects: $objects) {
+        returning {
+          id
+        }
+      }
+    }`,
+    "variables": {objects: data}
+  };
+  return generateHasuraAPI(query);
+};
+
+export const deleteDstMc = (data) => {
+  const query = {
+    query: `mutation ($id: String) {
+      delete_dst_mc_meeting_by_pk(id: $id) {
+        id
+      }
+    }`,
+    "variables": {id: data.id}
+  };
+  return generateHasuraAPI(query);
+};
 
