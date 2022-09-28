@@ -16,11 +16,11 @@ const ITIOptions = ({ goBack, setGoBack, setNotify, user }) => {
   const onDstMc = () => {
     goBack.push(window.location.pathname);
     setGoBack(goBack);
-    browserHistory.push('/create-dst-mc');
+    browserHistory.push('/dst-mc-options');
   };
 
   const onUpdateAcademicCalendar = () => {
-    if(!academicCalendarLink?.calendar_link) {
+    if(academicCalendarLink?.calendar_link) {
       window.open(academicCalendarLink?.calendar_link);
     }else {
       window.alert('Academic calendar form has not been updated yet.');

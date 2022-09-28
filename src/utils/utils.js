@@ -159,4 +159,46 @@ export const getLoggedInITIDetails = (data) => {
   return generateHasuraAPI(query);
 };
 
+export const createDstMc = (data) => {
+  const query = {
+    query: `mutation create_dst_mc_meeting($objects: [dst_mc_meeting_insert_input!] = {}) {
+      insert_dst_mc_meeting(objects: $objects) {
+        returning {
+          id
+        }
+      }
+    }`,
+    "variables": {objects: data}
+  };
+  return generateHasuraAPI(query);
+};
+
+export const getITIsList = () => {
+  const query = {
+    query: `query {
+      iti {
+        id
+        name
+        district
+        latitude
+        longitude
+      }
+    }`
+  };
+  return generateHasuraAPI(query);
+};
+
+export const getIndustriesList = () => {
+  const query = {
+    query: `query {
+      industry {
+        id
+        name
+        district
+      }
+    }`
+  };
+  return generateHasuraAPI(query);
+};
+
 

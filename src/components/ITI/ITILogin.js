@@ -17,7 +17,6 @@ import {APPLICATION_ID} from "../../common/config";
 const ITILogin = ({
   goBack, setGoBack, setLoader, setNotify, setUser,
 }) => {
-  const [OTP, setOTP] = useState('');
   const onSubmit = async (formData) => {
     if(formData.pin.length<4){
       store.dispatch(notifySet({
