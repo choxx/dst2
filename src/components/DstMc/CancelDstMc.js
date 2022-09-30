@@ -94,9 +94,6 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
     setUserDetails(principal[0]);
     formSpec.forms[formId].prefill.district2 = "`"+`${principal[0]?.district}`+"`";
     formSpec.forms[formId].prefill.ITI2 = "`"+`${principal[0]?.iti}`+"`";
-    formSpec.forms[formId].prefill.dst_trade2 = "`"+`${selectedTrade}`+"`";
-    formSpec.forms[formId].prefill.dst_batch2 = "`"+`${selectedBatch}`+"`";
-    formSpec.forms[formId].prefill.industry_partner2 = "`"+`${selectedFilteredIndustry}`+"`";
     setEncodedFormSpec(encodeURI(JSON.stringify(formSpec.forms[formId])));
     setEncodedFormURI(getFormURI(formId, formSpec.forms[formId].onSuccess, formSpec.forms[formId].prefill));
     setLoader(false);
@@ -117,12 +114,14 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
 
   const bindEventListener = () => {
     window.removeEventListener('message', (e) => {afterFormSubmit(e);});
-    window.addEventListener('message', (e) => {afterFormSubmit(e);});
+    window.setTimeout(() => {
+      window.addEventListener('message', (e) => {afterFormSubmit(e);});
+    }, 1500);
   };
 
   useEffect(() => {
     bindEventListener();
-  }, [filteredIndustries]);
+  }, [selectedFilteredIndustry]);
 
   useEffect(() => {
     fetchITIsList();
@@ -173,6 +172,15 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
     setSelectedFilteredIndustry('');
   };
 
+  const onIndustrySelect = async (value) => {
+    setSelectedFilteredIndustry(event.target.value);
+    formSpec.forms[formId].prefill.dst_trade2 = "`"+`${selectedTrade}`+"`";
+    formSpec.forms[formId].prefill.dst_batch2 = "`"+`${selectedBatch}`+"`";
+    formSpec.forms[formId].prefill.industry_partner2 = "`"+`${value}`+"`";
+    setEncodedFormSpec(encodeURI(JSON.stringify(formSpec.forms[formId])));
+    setEncodedFormURI(getFormURI(formId, formSpec.forms[formId].onSuccess, formSpec.forms[formId].prefill));
+  };
+
   /*useEffect(() => {
     fetchITIsList();
   }, []);*/
@@ -188,7 +196,7 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
         >
           <option value="">Select Trade</option>
           {
-            trades && trades.length > 0 && trades.map((item) => <option value={item}>{item}</option>)
+            trades && trades.length > 0 && trades.map((item) => <option key={item} value={item}>{item}</option>)
           }
         </select>
 
@@ -198,13 +206,13 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
         >
           <option value="">Select Batch</option>
           {
-            batches && batches.length > 0 && batches.map((item) => <option value={item}>{item}</option>)
+            batches && batches.length > 0 && batches.map((item) => <option key={item} value={item}>{item}</option>)
           }
         </select>
 
         <select className="form-select appearance-none px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 name="filteredIndustries" id="filteredIndustries"
-                onChange={(event) => {setSelectedFilteredIndustry(event.target.value);}}
+                onChange={(event) => {onIndustrySelect(event.target.value);}}
         >
           <option value="">Select Industry</option>
           {
