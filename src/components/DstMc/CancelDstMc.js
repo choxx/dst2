@@ -3,15 +3,30 @@ import withGoBack from '../../redux/HOC/withGoBack';
 import Header from '../Header';
 import formSpecJSON from "./cancelWorkflow.json";
 import React, { useState, useEffect } from 'react';
-import {deleteDstMc, getIndustriesList, getITIsList, getLoggedInITIDetails} from "../../utils/utils";
+import {
+  deleteDstMc,
+  getFilteredBatch, getFilteredIndustry,
+  getFilteredTrades,
+  getIndustriesList,
+  getITIsList,
+  getLoggedInITIDetails
+} from "../../utils/utils";
 import withNotify from "../../redux/HOC/withNotify";
 import withLoader from "../../redux/HOC/withLoader";
 import withUser from "../../redux/HOC/withUser";
 
 const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
   const [userDetails, setUserDetails] = useState({});
-  const [currentIti, setCurrentIti] = useState('');
   const [industries, setIndustries] = useState([]);
+
+
+  const [currentIti, setCurrentIti] = useState('');
+  const [trades, setTrades] = useState([]);
+  const [batches, setBatches] = useState([]);
+  const [filteredIndustries, setFilteredIndustries] = useState([]);
+  const [selectedTrade, setSelectedTrade] = useState('');
+  const [selectedBatch, setSelectedBatch] = useState('');
+  const [selectedFilteredIndustry, setSelectedFilteredIndustry] = useState('');
 
   const onBack = () => {
     onGoBack(goBack);
@@ -79,6 +94,9 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
     setUserDetails(principal[0]);
     formSpec.forms[formId].prefill.district2 = "`"+`${principal[0]?.district}`+"`";
     formSpec.forms[formId].prefill.ITI2 = "`"+`${principal[0]?.iti}`+"`";
+    formSpec.forms[formId].prefill.dst_trade2 = "`"+`${selectedTrade}`+"`";
+    formSpec.forms[formId].prefill.dst_batch2 = "`"+`${selectedBatch}`+"`";
+    formSpec.forms[formId].prefill.industry_partner2 = "`"+`${selectedFilteredIndustry}`+"`";
     setEncodedFormSpec(encodeURI(JSON.stringify(formSpec.forms[formId])));
     setEncodedFormURI(getFormURI(formId, formSpec.forms[formId].onSuccess, formSpec.forms[formId].prefill));
     setLoader(false);
@@ -89,6 +107,7 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
     const currentITI = data.data.iti.find((item) => item.name == user?.user?.user?.username).id;
     setCurrentIti(currentITI);
     fetchIndustriesList();
+    fetchFilteredTrades(currentITI);
   };
 
   const fetchIndustriesList = async () => {
@@ -97,12 +116,13 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
   };
 
   const bindEventListener = () => {
+    window.removeEventListener('message', (e) => {afterFormSubmit(e);});
     window.addEventListener('message', (e) => {afterFormSubmit(e);});
   };
 
   useEffect(() => {
     bindEventListener();
-  }, [industries]);
+  }, [filteredIndustries]);
 
   useEffect(() => {
     fetchITIsList();
@@ -110,17 +130,100 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
   }, []);
 
 
+  // =========================================================
+
+  /*const fetchITIsList = async () => {
+    const data = await getITIsList();
+    const currentITI = data.data.iti.find((item) => item.name == user?.user?.user?.username).id;
+    setCurrentIti(currentITI);
+    fetchFilteredTrades(currentITI);
+  };*/
+
+  const fetchFilteredTrades = async (currentITI) => {
+    const reqData = {
+      itiId: currentITI
+    };
+    const {data: {dst_mc_meeting}} = await getFilteredTrades(reqData);
+    const list = dst_mc_meeting.map((item) => item.trade);
+    setTrades(list);
+  };
+
+  const onTradesSelect = async (value) => {
+    const reqData = {
+      itiId: currentIti,
+      trade: value
+    };
+    setSelectedTrade(value);
+    const {data: {dst_mc_meeting}} = await getFilteredBatch(reqData);
+    const list = dst_mc_meeting.map((item) => item.batch);
+    setBatches(list);
+    setFilteredIndustries([]);
+  };
+
+  const onBatchSelect = async (value) => {
+    const reqData = {
+      itiId: currentIti,
+      trade: selectedTrade,
+      batch: value
+    };
+    setSelectedBatch(value);
+    const {data: {dst_mc_meeting}} = await getFilteredIndustry(reqData);
+    const list = dst_mc_meeting.map((item) => item.industry);
+    setFilteredIndustries(list);
+    setSelectedFilteredIndustry('');
+  };
+
+  /*useEffect(() => {
+    fetchITIsList();
+  }, []);*/
+
+
   return (
     <div>
-      <Header title="Create DST MC" onBackButton={onBack} />
-      <div className="text-center text-teal-700">
-        <iframe title='current-form'
-          style={{ height: "100vh", width: "100vw" }}
-          src={
-            `http://localhost:8005/preview?formSpec=${encodedFormSpec}&xform=${encodedFormURI}`
+      <Header title="Cancel DST MC" onBackButton={onBack} />
+      <div className="grid grid-cols-3 gap-x-4 p-4">
+        <select className="form-select appearance-none px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                name="trade" id="trade"
+                onChange={(event) => {onTradesSelect(event.target.value);}}
+        >
+          <option value="">Select Trade</option>
+          {
+            trades && trades.length > 0 && trades.map((item) => <option value={item}>{item}</option>)
           }
-        />
+        </select>
+
+        <select className="form-select appearance-none px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                name="trade" id="trade"
+                onChange={(event) => {onBatchSelect(event.target.value);}}
+        >
+          <option value="">Select Batch</option>
+          {
+            batches && batches.length > 0 && batches.map((item) => <option value={item}>{item}</option>)
+          }
+        </select>
+
+        <select className="form-select appearance-none px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                name="filteredIndustries" id="filteredIndustries"
+                onChange={(event) => {setSelectedFilteredIndustry(event.target.value);}}
+        >
+          <option value="">Select Industry</option>
+          {
+            filteredIndustries && filteredIndustries.length > 0 && filteredIndustries.map((item) => <option value={item.id}>{item.name}</option>)
+          }
+        </select>
+
       </div>
+      {
+        filteredIndustries && filteredIndustries.length > 0 && selectedFilteredIndustry && <div className="text-center text-teal-700">
+          <iframe title='current-form'
+                  key={+new Date()}
+                  style={{ height: "100vh", width: "100vw" }}
+                  src={
+                    `http://localhost:8005/preview?formSpec=${encodedFormSpec}&xform=${encodedFormURI}`
+                  }
+          />
+        </div>
+      }
     </div>
   );
 };

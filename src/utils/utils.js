@@ -230,7 +230,7 @@ export const deleteDstMc = (data) => {
 //todo: need to test these filtered apis
 export const getFilteredTrades = (data) => {
   const query = {
-    query: `query ($iti_id: String) {
+    query: `query ($iti_id: Int) {
       dst_mc_meeting(where: {iti_id: {_eq: $iti_id}}) {
         id
         district
@@ -248,15 +248,15 @@ export const getFilteredTrades = (data) => {
         trade
       }
     }`,
-    "variables": {iti_id: data.iti_id}
+    "variables": {iti_id: data.itiId}
   };
   return generateHasuraAPI(query);
 };
 
 export const getFilteredBatch = (data) => {
   const query = {
-    query: `query ($iti_id: String, $trade_id: String) {
-      dst_mc_meeting(where: {iti_id: {_eq: $iti_id}, trade: {_eq: $trade_id}}) {
+    query: `query ($iti_id: Int, $trade: String) {
+      dst_mc_meeting(where: {iti_id: {_eq: $iti_id}, trade: {_eq: $trade}}) {
         id
         district
         iti_id
@@ -273,15 +273,15 @@ export const getFilteredBatch = (data) => {
         trade
       }
     }`,
-    "variables": {iti_id: data.iti_id}
+    "variables": {iti_id: data.itiId, trade: data.trade}
   };
   return generateHasuraAPI(query);
 };
 
 export const getFilteredIndustry = (data) => {
   const query = {
-    query: `query ($iti_id: String, $industry_id: String, $trade: String) {
-      dst_mc_meeting(where: {iti_id: {_eq: $iti_id}, trade: {_eq: "Electronics Mechanic"}, batch: {_eq: "2022-24"}}) {
+    query: `query ($iti_id: Int, $trade: String, $batch: String) {
+      dst_mc_meeting(where: {iti_id: {_eq: $iti_id}, trade: {_eq: $trade}, batch: {_eq: $batch}}) {
         id
         district
         iti_id
@@ -298,7 +298,7 @@ export const getFilteredIndustry = (data) => {
         trade
       }
     }`,
-    "variables": {iti_id: data.iti_id}
+    "variables": {iti_id: data.itiId, trade: data.trade, batch: data.batch}
   };
   return generateHasuraAPI(query);
 };
