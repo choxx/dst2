@@ -213,7 +213,7 @@ const UpdateDstMc = ({ goBack, setLoader, user, setNotify }) => {
                     key={+new Date()}
                     style={{ height: "100vh", width: "100vw" }}
                     src={
-                      `http://localhost:8005/preview?formSpec=${encodedFormSpec}&xform=${encodedFormURI}`
+                      `http://localhost:8065/preview?formSpec=${encodedFormSpec}&xform=${encodedFormURI}`
                     }
             />
           </div>
