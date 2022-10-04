@@ -3,7 +3,7 @@ import withGoBack from '../../redux/HOC/withGoBack';
 import Header from '../Header';
 import formSpecJSON from "./workflow.json";
 import React, { useState, useEffect } from 'react';
-import { createDstMc, getLoggedInITIDetails, getIndustriesList, getITIsList } from '../../utils/utils';
+import {createDstMc, getLoggedInITIDetails, getIndustriesList, getITIsList} from '../../utils/utils';
 import withLoader from "../../redux/HOC/withLoader";
 import withUser from "../../redux/HOC/withUser";
 import withNotify from "../../redux/HOC/withNotify";
@@ -32,7 +32,7 @@ const CreateDstMc = ({ goBack, setLoader, user, setNotify }) => {
   const [onFormFailureData, setOnFormFailureData] = useState(undefined);
   const [encodedFormURI, setEncodedFormURI] = useState(getFormURI(formId, formSpec.forms[formId].onSuccess, formSpec.forms[formId].prefill));
 
-  function afterFormSubmit(e) {
+  function afterFormSubmit (e) {
     const data = JSON.parse(e.data);
     try {
       /* message = {
@@ -135,10 +135,10 @@ const CreateDstMc = ({ goBack, setLoader, user, setNotify }) => {
     const reqData = {
       itiName: user?.user?.user?.username || ''
     };
-    const { data: { principal } } = await getLoggedInITIDetails(reqData);
+    const {data: {principal}} = await getLoggedInITIDetails(reqData);
     setUserDetails(principal[0]);
-    formSpec.forms[formId].prefill.district1 = "`" + `${principal[0]?.district}` + "`";
-    formSpec.forms[formId].prefill.ITI1 = "`" + `${principal[0]?.iti}` + "`";
+    formSpec.forms[formId].prefill.district1 = "`"+`${principal[0]?.district}`+"`";
+    formSpec.forms[formId].prefill.ITI1 = "`"+`${principal[0]?.iti}`+"`";
     setEncodedFormSpec(encodeURI(JSON.stringify(formSpec.forms[formId])));
     setEncodedFormURI(getFormURI(formId, formSpec.forms[formId].onSuccess, formSpec.forms[formId].prefill));
     setLoader(false);
@@ -168,24 +168,6 @@ const CreateDstMc = ({ goBack, setLoader, user, setNotify }) => {
     fetchITIsList();
     fetchUserDetails();
   }, []);
-
-  // settimeoiut after a minute
-
-  const getFormData = async () => {
-    // send broacast message to iframe
-    const iframe = document.getElementById('current-form');
-    iframe.contentWindow.postMessage('getFormData', '*');
-
-    // wait for the message from ifram and set a variable
-    window.addEventListener('message', (e) => {
-      const data = JSON.parse(e.data);
-      if (data.type === 'formData') {
-        setFormData(data.data);
-      }
-    });
-
-    return Promise.resolve("bla");
-  };
 
 
   return (
