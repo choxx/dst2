@@ -38,8 +38,10 @@ const [selectedIndustry,setSelectedIndustry] = useState(null);
   const encodeFunction = (func) => encodeURIComponent(JSON.stringify(func));
 
 
-  const getFormURI = (form, ofsd, prefillSpec) =>  encodeURIComponent(`http://localhost:3002/prefill?form=${form}&onFormSuccessData=${encodeFunction(ofsd)}&prefillSpec=${encodeFunction(prefillSpec)}`);
-
+  const getFormURI = (form, ofsd, prefillSpec) => {
+    console.log(form, ofsd, prefillSpec);
+    return encodeURIComponent(`${process.env.REACT_APP_GET_FORM}/prefill?form=${form}&onFormSuccessData=${encodeFunction(ofsd)}&prefillSpec=${encodeFunction(prefillSpec)}`);
+  };
 
   const startingForm = formSpec.start;
   const [formId, setFormId] = useState(startingForm);
@@ -121,7 +123,6 @@ const updateFormInfo = async (updateForm,industry) => {
   const fetchIndustriesList = async () => {
     const data = await getIndustriesList();
     setIndustries(data.data.industry);
-    // console.log(data?.data?.industry,"industries");
   };
 
   const bindEventListener = () => {
@@ -227,7 +228,7 @@ const updateFormInfo = async (updateForm,industry) => {
                     key={+new Date()}
                     style={{ height: "100vh", width: "100vw" }}
                     src={
-                      `http://localhost:8065/preview?formSpec=${encodedFormSpec}&xform=${encodedFormURI}`
+                      `${process.env.REACT_APP_ENKETO}/preview?formSpec=${encodedFormSpec}&xform=${encodedFormURI}`
                     }
             />
           </div>
