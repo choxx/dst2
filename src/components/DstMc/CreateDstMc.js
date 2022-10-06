@@ -54,7 +54,7 @@ const CreateDstMc = ({ goBack, setLoader, user, setNotify }) => {
               "district": formData?.Create_DSTMC?.district1,
               "trade": formData?.Create_DSTMC?.dst_trade1,
               "batch": formData?.Create_DSTMC?.dst_batch1,
-              "note": formData?.Create_DSTMC?.note2,
+              "note": "",
               "mc_number": formData?.Create_DSTMC?.MC_number,
               "mc_information_count": formData?.Create_DSTMC?.MC_Information_count,
               "instance_id": formData?.meta?.instanceID,
@@ -89,7 +89,7 @@ const CreateDstMc = ({ goBack, setLoader, user, setNotify }) => {
               "district": formData?.Create_DSTMC?.district1,
               "trade": formData?.Create_DSTMC?.dst_trade1,
               "batch": formData?.Create_DSTMC?.dst_batch1,
-              "note": formData?.Create_DSTMC?.note2,
+              "note": "",
               "mc_number": formData?.Create_DSTMC?.MC_number,
               "mc_information_count": formData?.Create_DSTMC?.MC_Information_count,
               "instance_id": formData?.meta?.instanceID,
@@ -107,7 +107,11 @@ const CreateDstMc = ({ goBack, setLoader, user, setNotify }) => {
 
             if (currentIti && reqData.iti_id) {
               createDstMc(reqData).then((res) => {
-                setNotify({ message: 'Form Created Successfully', type: 'success' });
+                if(res.errors && res.errors.length > 0) {
+                  setNotify({ message: res.errors[0].message, type: 'error' });
+                }else{
+                  setNotify({ message: 'Form Created Successfully', type: 'success' });
+                }
               });
             } else {
               setNotify({ message: 'Can not create meeting', type: 'error' });

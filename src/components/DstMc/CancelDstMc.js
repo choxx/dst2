@@ -54,9 +54,8 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
 
   const updateFormInfo = async (updateForm) => {
     const id = localStorage.getItem("dstId");
-   const res1 =  await cancelDSTMC(updateForm,id);
+    const res1 =  await cancelDSTMC(updateForm,id);
     const res2 = await updateFileUrl(updateForm.ex_file_widget,id,"FORM_CANCEL");
-    console.log({res1,res2}, "responses");
   };
   function afterFormSubmit (e) {
     const data = JSON.parse(e.data);
@@ -150,7 +149,7 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
       itiId: currentITI
     };
     const {data: {dst_mc_meeting}} = await getFilteredTrades(reqData);
-    const list = dst_mc_meeting.map((item) => item.trade);
+    const list = dst_mc_meeting.map((item) => item.trade).filter((item, index, self) => self.indexOf(item) === index);
     setTrades(list);
   };
 
@@ -162,7 +161,7 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
     setSelectedTrade(value);
     const {data: {dst_mc_meeting}} = await getFilteredBatch(reqData);
     localStorage.setItem("dstId",dst_mc_meeting[0].id);
-    const list = dst_mc_meeting.map((item) => item.batch);
+    const list = dst_mc_meeting.map((item) => item.batch).filter((item, index, self) => self.indexOf(item) === index);
     setBatches(list);
     setFilteredIndustries([]);
   };
@@ -175,7 +174,7 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
     };
     setSelectedBatch(value);
     const {data: {dst_mc_meeting}} = await getFilteredIndustry(reqData);
-    const list = dst_mc_meeting.map((item) => item.industry);
+    const list = dst_mc_meeting.map((item) => item.industry).filter((item, index, self) => self.indexOf(item) === index);
     setFilteredIndustries(list);
     setSelectedFilteredIndustry('');
   };

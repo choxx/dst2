@@ -50,11 +50,11 @@ const [selectedIndustry,setSelectedIndustry] = useState(null);
   const [onFormFailureData, setOnFormFailureData] = useState(undefined);
   const [encodedFormURI, setEncodedFormURI] = useState(getFormURI(formId, formSpec.forms[formId].onSuccess, formSpec.forms[formId].prefill));
 
-const updateFormInfo = async (updateForm,industry) => {
-  const id = localStorage.getItem("dstId");
-  await updateDataRelativeToIndustryId(updateForm,industry,id);
-  await updateFileUrl(updateForm.ex_file_widget,id,"FORM_UPDATE");
-};
+  const updateFormInfo = async (updateForm,industry) => {
+    const id = localStorage.getItem("dstId");
+    await updateDataRelativeToIndustryId(updateForm,industry,id);
+    await updateFileUrl(updateForm.ex_file_widget,id,"FORM_UPDATE");
+  };
   async function afterFormSubmit  (e) {
     const data = JSON.parse(e.data);
     try {

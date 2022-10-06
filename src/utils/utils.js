@@ -232,7 +232,7 @@ export const deleteDstMc = (data) => {
 export const getFilteredTrades = (data) => {
   const query = {
     query: `query ($iti_id: Int) {
-      dst_mc_meeting(where: {iti_id: {_eq: $iti_id}, deleted_at: {_is_null: false}}) {
+      dst_mc_meeting(where: {iti_id: {_eq: $iti_id}, deleted_at: {_is_null: true}}) {
         id
         district
         iti_id
@@ -257,7 +257,7 @@ export const getFilteredTrades = (data) => {
 export const getFilteredBatch = (data) => {
   const query = {
     query: `query ($iti_id: Int, $trade: String) {
-      dst_mc_meeting(where: {iti_id: {_eq: $iti_id}, trade: {_eq: $trade}, deleted_at: {_is_null: false}}) {
+      dst_mc_meeting(where: {iti_id: {_eq: $iti_id}, trade: {_eq: $trade}, deleted_at: {_is_null: true}}) {
         id
         district
         iti_id
@@ -282,7 +282,7 @@ export const getFilteredBatch = (data) => {
 export const getFilteredIndustry = (data) => {
   const query = {
     query: `query ($iti_id: Int, $trade: String, $batch: String) {
-      dst_mc_meeting(where: {iti_id: {_eq: $iti_id}, trade: {_eq: $trade}, batch: {_eq: $batch}, deleted_at: {_is_null: false}}) {
+      dst_mc_meeting(where: {iti_id: {_eq: $iti_id}, trade: {_eq: $trade}, batch: {_eq: $batch}, deleted_at: {_is_null: true}}) {
         id
         district
         iti_id
