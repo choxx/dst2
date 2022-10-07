@@ -23,7 +23,7 @@ const CreateDstMc = ({ goBack, setLoader, user, setNotify }) => {
   const encodeFunction = (func) => encodeURIComponent(JSON.stringify(func));
 
 
-  const getFormURI = (form, ofsd, prefillSpec) => encodeURIComponent(`${process.env.REACT_APP_GET_FORM}/prefill?form=${form}&onFormSuccessData=${encodeFunction(ofsd)}&prefillSpec=${encodeFunction(prefillSpec)}`);
+  const getFormURI = (form, ofsd, prefillSpec) => encodeURIComponent(`${process.env.REACT_APP_GET_FORM_V2}/prefill?form=${form}&onFormSuccessData=${encodeFunction(ofsd)}&prefillSpec=${encodeFunction(prefillSpec)}`);
 
   const startingForm = formSpec.start;
   const [formId, setFormId] = useState(startingForm);

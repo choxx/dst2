@@ -41,7 +41,7 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
 
   const getFormURI = (form, ofsd, prefillSpec) => {
     console.log(form, ofsd, prefillSpec);
-    return encodeURIComponent(`${process.env.REACT_APP_GET_FORM}/prefill?form=${form}&onFormSuccessData=${encodeFunction(ofsd)}&prefillSpec=${encodeFunction(prefillSpec)}`);
+    return encodeURIComponent(`${process.env.REACT_APP_GET_FORM_V2}/prefill?form=${form}&onFormSuccessData=${encodeFunction(ofsd)}&prefillSpec=${encodeFunction(prefillSpec)}`);
   };
 
   const startingForm = formSpec.start;
