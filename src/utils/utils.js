@@ -3,7 +3,7 @@ import {OTP_API_URL, HTTP_BASIC_USER, HTTP_BASIC_PASS, API_KEY, HASURA_QUERY_URL
 import { store } from '../redux/store';
 import {loaderSet, notifySet, userSet} from '../redux/actions';
 import { queryString, userLogout } from '../common/globals';
-import moment from "moment"
+import moment from "moment";
 
 
 const validateResponse = async (response) => {
@@ -389,8 +389,7 @@ export const updateFileUrl  = (url,a,t) => {
   return generateHasuraAPI(query);
 };
 export const cancelDSTMC  = (data,a) => {
-  const localtime = moment().format("YYYY-MM-DD h:mm:ss")
-  console.log(localtime,"localtime")
+  const localtime = moment().format("YYYY-MM-DD h:mm:ss");
   const obj = {
     id:parseInt(a),
     deleted_at:localtime
