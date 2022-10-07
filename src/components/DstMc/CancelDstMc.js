@@ -41,7 +41,7 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
 
   const getFormURI = (form, ofsd, prefillSpec) => {
     console.log(form, ofsd, prefillSpec);
-    return encodeURIComponent(`${process.env.REACT_APP_GET_FORM_V2}/prefill?form=${form}&onFormSuccessData=${encodeFunction(ofsd)}&prefillSpec=${encodeFunction(prefillSpec)}`);
+    return encodeURIComponent(`${process.env.REACT_APP_GET_FORM_ITI_FLOW}/prefill?form=${form}&onFormSuccessData=${encodeFunction(ofsd)}&prefillSpec=${encodeFunction(prefillSpec)}`);
   };
 
   const startingForm = formSpec.start;
@@ -234,7 +234,7 @@ const CancelDstMc = ({ goBack, setLoader, user, setNotify }) => {
             key={+new Date()}
             style={{ height: "100vh", width: "100vw" }}
             src={
-              `${process.env.REACT_APP_ENKETO}/preview?formSpec=${encodedFormSpec}&xform=${encodedFormURI}`
+              `${process.env.REACT_APP_ENKETO_ITI_FLOW}/preview?formSpec=${encodedFormSpec}&xform=${encodedFormURI}`
             }
           />
         </div>

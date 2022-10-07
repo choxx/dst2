@@ -33,7 +33,8 @@ jobs:
         env:
           REACT_APP_ENKETO: http://localhost:8065
           REACT_APP_GET_FORM: http://localhost:8080
-          REACT_APP_GET_FORM_V2: http://localhost:3002
+          REACT_APP_ENKETO_ITI_FLOW: http://localhost:8066
+          REACT_APP_GET_FORM_ITI_FLOW: http://localhost:3002
         run: yarn build
 
       - name: Deploy
