@@ -11,6 +11,7 @@ import { userLogout } from '../../common/globals';
 import {isEmpty} from "lodash";
 import withNotify from "../../redux/HOC/withNotify";
 import withUser from "../../redux/HOC/withUser";
+import { onGoBack } from '../../common/globals';
 
 const ITIOptions = ({ goBack, setGoBack, setNotify, user }) => {
   const onDstMc = () => {
@@ -41,10 +42,13 @@ const ITIOptions = ({ goBack, setGoBack, setNotify, user }) => {
   useEffect(() => {
     fetchAcademicLink();
   }, []);
+  const onBack = () => {
+    onGoBack(goBack);
+};
 
   return (
     <div>
-      <Header />
+      <Header onBackButton={onBack}/>
       <div className="p-2 pb-10">
         <div className="m-10 text-teal-800 text-center">
           <h2 className="header-text-color">Please select one option to proceed</h2>

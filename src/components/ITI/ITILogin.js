@@ -42,7 +42,7 @@ const ITILogin = ({
         setGoBack(goBack);
         browserHistory.push('/iti-welcome');
       } else {
-        setNotify({ message: params.errMsg || "can't login", type: 'error' });
+        setNotify({ message: 'Incorrect username/PIN' || "can't login", type: 'error' });
       }
     }
     setLoader(false);
