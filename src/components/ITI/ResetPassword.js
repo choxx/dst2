@@ -13,7 +13,6 @@ import {notifySet} from "../../redux/actions";
 import { ResetPIN } from '../../utils/utils';
 import {Field, Form} from "react-final-form";
 import {renderField, required} from "../../helpers/form-validations";
-import {APPLICATION_ID} from "../../common/config";
 
 const ResetPassword = ({
                goBack, setGoBack, user, setNotify, setLoader, setUser,
@@ -37,7 +36,7 @@ const ResetPassword = ({
       "loginId": formData.username,
       // "password": OTP,
       "password": formData.pin,
-      "applicationId": APPLICATION_ID
+      "applicationId": process.env.APPLICATION_ID
     };
     setLoader(true);
     const Res = await ITIlogin(reqData);

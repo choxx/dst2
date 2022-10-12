@@ -19,14 +19,7 @@ yarn install
 
 - Modify data value as needed
 
-### 4. Create `src/common/config.js` file
-- Create ```src/common/config.js``` file
-
-- Copy  ```src/common/sample.config.js``` and paste into ```src/common/config.js```
-
-- Modify data value as needed
-
-### 5. Run it :checkered_flag:
+### 4. Run it :checkered_flag:
 ```sh
 yarn start
 ```

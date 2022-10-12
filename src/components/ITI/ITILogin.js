@@ -12,7 +12,6 @@ import Header from '../Header';
 import OTPInput from "otp-input-react";
 import {store} from "../../redux/store";
 import {loaderSet, notifySet} from "../../redux/actions";
-import {APPLICATION_ID} from "../../common/config";
 
 const ITILogin = ({
   goBack, setGoBack, setLoader, setNotify, setUser,
@@ -29,7 +28,7 @@ const ITILogin = ({
       "loginId": formData.username,
       // "password": OTP,
       "password": formData.pin,
-      "applicationId": APPLICATION_ID
+      "applicationId": process.env.APPLICATION_ID
     };
     setLoader(true);
     const Res = await ITIlogin(reqData);

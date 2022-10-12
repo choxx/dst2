@@ -1,5 +1,4 @@
 import base64 from 'base-64';
-import {OTP_API_URL, HTTP_BASIC_USER, HTTP_BASIC_PASS, API_KEY, HASURA_QUERY_URL, API_BASE_URL, APPLICATION_ID} from '../common/config';
 import { store } from '../redux/store';
 import {loaderSet, notifySet, userSet} from '../redux/actions';
 import { queryString, userLogout } from '../common/globals';
@@ -49,7 +48,7 @@ const generateHasuraAPI = async (query) => {
     }
   }
 
-  return fetch(HASURA_QUERY_URL, {
+  return fetch(process.env.HASURA_QUERY_URL, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -62,13 +61,13 @@ const generateHasuraAPI = async (query) => {
 };
 
 export const RefreshToken = async (data) => {
-  const res = await fetch(`${API_BASE_URL}/refresh-token`, {
+  const res = await fetch(`${process.env.API_BASE_URL}/refresh-token`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: API_KEY,
-      "x-application-id": APPLICATION_ID
+      Authorization: process.env.API_KEY,
+      "x-application-id": process.env.APPLICATION_ID
     },
     body: JSON.stringify(data)
   });
@@ -84,45 +83,45 @@ export const RefreshToken = async (data) => {
   }
 };
 
-export const sendOTP = async (data) => fetch(`${OTP_API_URL}/dst/sendOTP?${queryString(data)}`, {
+export const sendOTP = async (data) => fetch(`${process.env.OTP_API_URL}/dst/sendOTP?${queryString(data)}`, {
   method: 'GET',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    Authorization: `Basic ${base64.encode(`${HTTP_BASIC_USER}:${HTTP_BASIC_PASS}`)}`,
+    Authorization: `Basic ${base64.encode(`${process.env.HTTP_BASIC_USER}:${process.env.HTTP_BASIC_PASS}`)}`,
   },
 }).then(async (response) => await validateResponse(response))
   .catch((error) => handleNetworkError(error));
 
-export const verifyOTP = async (data) => fetch(`${OTP_API_URL}/dst/verifyOTP?${queryString(data)}`, {
+export const verifyOTP = async (data) => fetch(`${process.env.OTP_API_URL}/dst/verifyOTP?${queryString(data)}`, {
   method: 'GET',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    Authorization: `Basic ${base64.encode(`${HTTP_BASIC_USER}:${HTTP_BASIC_PASS}`)}`,
+    Authorization: `Basic ${base64.encode(`${process.env.HTTP_BASIC_USER}:${process.env.HTTP_BASIC_PASS}`)}`,
   },
 }).then(async (response) => await validateResponse(response))
   .catch((error) => handleNetworkError(error));
 
-export const ITIlogin = (data) => fetch(`${API_BASE_URL}/login/pin`, {
+export const ITIlogin = (data) => fetch(`${process.env.API_BASE_URL}/login/pin`, {
   method: 'POST',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    // Authorization: `Basic ${base64.encode(`${HTTP_BASIC_USER}:${HTTP_BASIC_PASS}`)}`,
-    Authorization: API_KEY,
+    // Authorization: `Basic ${base64.encode(`${process.env.HTTP_BASIC_USER}:${process.env.HTTP_BASIC_PASS}`)}`,
+    Authorization: process.env.API_KEY,
   },
   body: JSON.stringify(data)
 }).then(async (response) => await validateResponse(response))
     .catch((error) => handleNetworkError(error));
 
-export const ResetPIN = (data) => fetch(`${API_BASE_URL}/changePin`, {
+export const ResetPIN = (data) => fetch(`${process.env.API_BASE_URL}/changePin`, {
   method: 'POST',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    Authorization: API_KEY,
-    "x-application-id": APPLICATION_ID
+    Authorization: process.env.API_KEY,
+    "x-application-id": process.env.APPLICATION_ID
   },
   body: JSON.stringify(data)
 }).then(async (response) => await validateResponse(response))
